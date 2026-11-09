@@ -24,6 +24,13 @@ export type Dictionary = {
     primary: string;
     mobile: string;
   };
+  scroll: {
+    toAbout: string;
+    toProjects: string;
+    toExperience: string;
+    toContact: string;
+    toTop: string;
+  };
   cv: {
     download: string;
     es: string;

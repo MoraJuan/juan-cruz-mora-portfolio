@@ -24,7 +24,7 @@ export function SectionHeading({
         as="h2"
         id={id}
         text={title}
-        charMs={16}
+        charMs={17}
         className="mt-3 text-2xl font-medium tracking-tight text-text transition-colors duration-200 group-hover:text-accent md:text-[1.75rem]"
       />
       {description ? (
@@ -32,7 +32,7 @@ export function SectionHeading({
           as="p"
           text={description}
           byWord
-          charMs={14}
+          charMs={13}
           className="mt-3 text-[1.02rem] leading-relaxed text-muted"
         />
       ) : null}

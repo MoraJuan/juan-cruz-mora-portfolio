@@ -12,16 +12,21 @@ type TypeLineProps = {
   text: string;
   as?: ElementType;
   className?: string;
-  /** Milliseconds per character (headings). */
+  /** Base ms per character (titles ~16–20). */
   charMs?: number;
-  /** Start typing as soon as mounted (hero above the fold). */
+  /** Start on mount (above the fold). */
   eager?: boolean;
-  /** Word-chunk mode for longer copy. */
+  /** Word units for longer leads — steadier rhythm. */
   byWord?: boolean;
 } & Omit<HTMLAttributes<HTMLElement>, "children">;
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function splitUnits(text: string, byWord: boolean) {
+  if (!byWord) return Array.from(text);
+  return text.split(/(\s+)/).filter((part) => part.length > 0);
 }
 
 export function TypeLine({
@@ -34,12 +39,14 @@ export function TypeLine({
   ...rest
 }: TypeLineProps) {
   const rootRef = useRef<HTMLElement | null>(null);
+  const playedRef = useRef(false);
   const [started, setStarted] = useState(false);
   const [visible, setVisible] = useState("");
   const [done, setDone] = useState(false);
   const [instant, setInstant] = useState(false);
 
   useEffect(() => {
+    playedRef.current = false;
     setVisible("");
     setDone(false);
     setStarted(false);
@@ -48,9 +55,10 @@ export function TypeLine({
 
   useEffect(() => {
     const node = rootRef.current;
-    if (!node) return;
+    if (!node || playedRef.current) return;
 
     if (prefersReducedMotion()) {
+      playedRef.current = true;
       setInstant(true);
       setVisible(text);
       setDone(true);
@@ -58,26 +66,32 @@ export function TypeLine({
       return;
     }
 
-    if (eager) {
+    const start = () => {
+      if (playedRef.current) return;
+      playedRef.current = true;
       setStarted(true);
+    };
+
+    if (eager) {
+      start();
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setStarted(true);
+        if (entry.isIntersecting && entry.intersectionRatio > 0) {
+          start();
           observer.disconnect();
         }
       },
-      { threshold: 0.2, rootMargin: "0px 0px -4% 0px" },
+      { threshold: [0, 0.05, 0.15], rootMargin: "0px 0px -1% 0px" },
     );
 
     observer.observe(node);
-    // If already in view on mount/locale change, start immediately.
+
     const rect = node.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
-      setStarted(true);
+    if (rect.top < window.innerHeight * 0.96 && rect.bottom > 40) {
+      start();
       observer.disconnect();
     }
 
@@ -91,34 +105,62 @@ export function TypeLine({
       return;
     }
 
-    let index = 0;
-    const units = byWord ? text.split(/(\s+)/).filter(Boolean) : [...text];
-    const stepMs = byWord ? Math.max(28, charMs * 2.2) : charMs;
+    const units = splitUnits(text, byWord);
+    const stepMs = byWord
+      ? Math.min(44, Math.max(24, charMs * 1.9))
+      : Math.min(26, Math.max(14, charMs));
 
+    let unitIndex = 0;
+    let raf = 0;
+    let lastTick = performance.now();
     setVisible("");
 
-    const id = window.setInterval(() => {
-      index += 1;
-      setVisible(units.slice(0, index).join(""));
-      if (index >= units.length) {
-        window.clearInterval(id);
-        setDone(true);
+    const tick = (now: number) => {
+      const elapsed = now - lastTick;
+      if (elapsed >= stepMs) {
+        const steps = Math.max(1, Math.floor(elapsed / stepMs));
+        unitIndex = Math.min(units.length, unitIndex + steps);
+        lastTick += steps * stepMs;
+        setVisible(units.slice(0, unitIndex).join(""));
       }
-    }, stepMs);
 
-    return () => window.clearInterval(id);
+      if (unitIndex >= units.length) {
+        setDone(true);
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [started, instant, done, text, charMs, byWord]);
 
-  const showCaret = started && !done && !instant;
+  const classes = ["type-line", className].filter(Boolean).join(" ");
+
+  // Finished / reduced-motion: one real text node (no ghost layers).
+  if (done || instant) {
+    return (
+      <Tag ref={rootRef as never} className={classes} {...rest}>
+        {text}
+      </Tag>
+    );
+  }
 
   return (
-    <Tag ref={rootRef as never} className={`type-line ${className}`.trim()} {...rest}>
-      <span className="sr-only">{text}</span>
+    <Tag
+      ref={rootRef as never}
+      className={classes}
+      {...rest}
+      aria-label={text}
+    >
+      <span className="type-line__seo">{text}</span>
       <span className="type-line__visual" aria-hidden="true">
         <span className="type-line__spacer">{text}</span>
         <span className="type-line__typed">
           {visible}
-          {showCaret ? <span className="type-caret" /> : null}
+          <span
+            className={`type-caret${started && !done ? " is-on" : ""}`}
+          />
         </span>
       </span>
     </Tag>

@@ -1,8 +1,8 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { handleHashLinkClick } from "@/lib/scroll-to-hash";
 import { site } from "@/data/site";
 import { CvDownload } from "./CvDownload";
 import { LanguageToggle } from "./LanguageToggle";
@@ -45,13 +45,15 @@ export function Navbar() {
       }`}
     >
       <div className="container-page flex h-14 min-w-0 items-center justify-between gap-3 md:h-16 md:gap-4">
-        <Link
+        <a
           href="#inicio"
           className="min-w-0 truncate text-[0.85rem] font-semibold uppercase tracking-[0.05em] text-text sm:text-[0.98rem] sm:tracking-[0.06em] md:text-[1.05rem]"
-          onClick={() => setOpen(false)}
+          onClick={(event) =>
+            handleHashLinkClick(event, () => setOpen(false))
+          }
         >
           {site.name}
-        </Link>
+        </a>
 
         <nav
           className="hidden items-center gap-6 lg:flex"
@@ -62,6 +64,7 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               className="text-sm text-muted transition-colors duration-200 hover:text-text"
+              onClick={(event) => handleHashLinkClick(event)}
             >
               {item.label}
             </a>
@@ -97,7 +100,9 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 className="rounded-sm px-2 py-3 text-base text-text"
-                onClick={() => setOpen(false)}
+                onClick={(event) =>
+                  handleHashLinkClick(event, () => setOpen(false))
+                }
               >
                 {item.label}
               </a>

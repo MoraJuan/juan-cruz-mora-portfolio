@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { handleHashLinkClick } from "@/lib/scroll-to-hash";
 
 type ButtonLinkProps = {
   href: string;
@@ -51,6 +54,18 @@ export function ButtonLink({
             : undefined
         }
         download={download || undefined}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  if (href.startsWith("#")) {
+    return (
+      <a
+        href={href}
+        className={classes}
+        onClick={(event) => handleHashLinkClick(event)}
       >
         {children}
       </a>

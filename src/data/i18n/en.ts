@@ -14,6 +14,13 @@ export const en: Dictionary = {
     primary: "Primary",
     mobile: "Mobile",
   },
+  scroll: {
+    toAbout: "Go to About",
+    toProjects: "Go to Projects",
+    toExperience: "Go to Experience",
+    toContact: "Go to Contact",
+    toTop: "Back to top",
+  },
   cv: {
     download: "Download CV",
     es: "CV in Spanish",

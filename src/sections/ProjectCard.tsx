@@ -41,14 +41,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           <TypeLine
             as="h3"
             text={project.name}
-            charMs={16}
+            charMs={17}
             className="mt-3 text-2xl font-medium tracking-tight text-text transition-colors duration-200 group-hover:text-accent md:text-[1.75rem]"
           />
           <TypeLine
             as="p"
             text={copy.tagline}
             byWord
-            charMs={12}
+            charMs={13}
             className="mt-3 text-[1.02rem] leading-relaxed text-muted"
           />
 
@@ -76,7 +76,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               as="p"
               text={copy.problem}
               byWord
-              charMs={10}
+              charMs={12}
               className="leading-relaxed text-text/90"
             />
           </div>
