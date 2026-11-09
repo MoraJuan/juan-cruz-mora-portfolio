@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="J">
+  <rect width="32" height="32" rx="7" fill="#F7F7F5"/>
+  <!-- Typographic J: high-contrast petroleum on off-white -->
+  <path
+    fill="#1A4A5C"
+    d="M19.2 6.8h3.1v13.4c0 3.55-2.35 5.95-6.05 5.95-3.35 0-5.55-1.95-5.9-4.85h3.05c.25 1.35 1.25 2.15 2.85 2.15 1.85 0 2.95-1.25 2.95-3.25V6.8z"
+  />
+</svg>
