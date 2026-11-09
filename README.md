@@ -1,6 +1,8 @@
 # Juan Cruz Mora — Portfolio
 
-Portfolio profesional en Next.js, TypeScript y Tailwind CSS.
+Portfolio editorial en Next.js, TypeScript y Tailwind CSS.
+
+Repo: [MoraJuan/juan-cruz-mora-portfolio](https://github.com/MoraJuan/juan-cruz-mora-portfolio)
 
 ## Desarrollo
 
@@ -11,26 +13,46 @@ npm run dev
 
 Abrí [http://localhost:3000](http://localhost:3000).
 
+## Scripts
+
+| Script | Uso |
+| --- | --- |
+| `npm run dev` | Desarrollo local |
+| `npm run build` | Build de producción |
+| `npm run start` | Servidor Next (`next start`) |
+| `npm run lint` | ESLint |
+
+## Railway
+
+Nixpacks detecta Next.js con estos scripts. No hace falta `railway.json` / `nixpacks.toml`.
+
+1. Conectá el repo en Railway.
+2. Build: `npm run build` (default).
+3. Start: `npm run start` → `next start`.
+4. Variable de entorno (recomendada):
+
+| Variable | Ejemplo | Uso |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | `https://tu-app.up.railway.app` | Canonical, Open Graph, `sitemap.xml`, `robots.txt` |
+
+Sin secrets obligatorios: el sitio es estático/SSR de presentación. Si no definís `NEXT_PUBLIC_SITE_URL`, cae a `https://juancruzmora.dev`.
+
 ## Contenido editable
 
 | Archivo | Uso |
 | --- | --- |
-| `src/data/site.ts` | Identidad, navegación, experiencia, formación y enlaces |
-| `src/data/projects.ts` | Proyectos destacados |
-| `src/data/skills.ts` | Habilidades por categoría y nivel de uso |
-| `public/projects/` | Capturas por proyecto |
-| `public/cv.pdf` | CV descargable (agregar el archivo antes de publicar) |
-
-## Antes de publicar
-
-1. Completá `site.links.email` y `site.links.emailLabel` en `src/data/site.ts`.
-2. Colocá tu CV en `public/cv.pdf`.
-3. Agregá capturas reales de Resto-app y Chimento en `public/projects/`.
-4. Definí `NEXT_PUBLIC_SITE_URL` con el dominio final.
+| `src/data/site.ts` | Nombre, rol, ubicación, email y enlaces |
+| `src/data/projects.ts` | Proyectos + media |
+| `src/data/skills.ts` | Habilidades por categoría |
+| `src/data/i18n/` | Copy ES / EN |
+| `public/projects/` | Capturas y video de demo |
+| `public/cv-es.pdf` / `public/cv-en.pdf` | CVs descargables |
+| `public/profile.jpg` | Foto de perfil |
+| `src/app/icon.svg` | Favicon (letra J) |
 
 ## Stack
 
-- Next.js (App Router)
+- Next.js 16 (App Router)
 - TypeScript
-- Tailwind CSS
+- Tailwind CSS v4
 - Lucide Icons
