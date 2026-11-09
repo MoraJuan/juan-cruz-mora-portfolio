@@ -1,3 +1,7 @@
+"use client";
+
+import { TypeLine } from "@/components/TypeLine";
+
 type SectionHeadingProps = {
   id?: string;
   eyebrow?: string;
@@ -16,16 +20,21 @@ export function SectionHeading({
       {eyebrow ? (
         <p className="font-mono text-xs tracking-wider text-muted">{eyebrow}</p>
       ) : null}
-      <h2
+      <TypeLine
+        as="h2"
         id={id}
+        text={title}
+        charMs={16}
         className="mt-3 text-2xl font-medium tracking-tight text-text transition-colors duration-200 group-hover:text-accent md:text-[1.75rem]"
-      >
-        {title}
-      </h2>
+      />
       {description ? (
-        <p className="mt-3 text-[1.02rem] leading-relaxed text-muted">
-          {description}
-        </p>
+        <TypeLine
+          as="p"
+          text={description}
+          byWord
+          charMs={14}
+          className="mt-3 text-[1.02rem] leading-relaxed text-muted"
+        />
       ) : null}
     </div>
   );

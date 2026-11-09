@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ExternalLink } from "@/components/ExternalLink";
 import { useLocale } from "@/components/LocaleProvider";
 import { Reveal } from "@/components/Reveal";
+import { TypeLine } from "@/components/TypeLine";
 import type { Project } from "@/lib/types";
 
 type ProjectCardProps = {
@@ -37,12 +38,19 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </span>
           </div>
 
-          <h3 className="mt-3 text-2xl font-medium tracking-tight text-text transition-colors duration-200 group-hover:text-accent md:text-[1.75rem]">
-            {project.name}
-          </h3>
-          <p className="mt-3 text-[1.02rem] leading-relaxed text-muted">
-            {copy.tagline}
-          </p>
+          <TypeLine
+            as="h3"
+            text={project.name}
+            charMs={16}
+            className="mt-3 text-2xl font-medium tracking-tight text-text transition-colors duration-200 group-hover:text-accent md:text-[1.75rem]"
+          />
+          <TypeLine
+            as="p"
+            text={copy.tagline}
+            byWord
+            charMs={12}
+            className="mt-3 text-[1.02rem] leading-relaxed text-muted"
+          />
 
           <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
             {project.repoUrl ? (
@@ -64,7 +72,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <div className="min-w-0 space-y-8">
           <div>
             <h4 className="eyebrow mb-2">{t.projects.problem}</h4>
-            <p className="leading-relaxed text-text/90">{copy.problem}</p>
+            <TypeLine
+              as="p"
+              text={copy.problem}
+              byWord
+              charMs={10}
+              className="leading-relaxed text-text/90"
+            />
           </div>
 
           <div>

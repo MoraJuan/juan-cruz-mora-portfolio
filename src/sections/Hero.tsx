@@ -6,6 +6,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { CvDownload } from "@/components/CvDownload";
 import { ExternalLink } from "@/components/ExternalLink";
 import { useLocale } from "@/components/LocaleProvider";
+import { TypeLine } from "@/components/TypeLine";
 import { site } from "@/data/site";
 
 export function Hero() {
@@ -21,15 +22,22 @@ export function Hero() {
         <div className="grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.7fr)] lg:items-start lg:gap-6">
           <div className="min-w-0">
             <p className="eyebrow mb-2">{t.hero.indicator}</p>
-            <h1
+            <TypeLine
+              as="h1"
               id="hero-title"
+              text={t.hero.headline}
+              eager
+              charMs={20}
               className="max-w-2xl text-[clamp(1.7rem,3.6vw,2.35rem)] font-medium leading-[1.2] tracking-tight text-text"
-            >
-              {t.hero.headline}
-            </h1>
-            <p className="mt-2.5 max-w-xl text-base leading-relaxed text-muted">
-              {t.hero.description}
-            </p>
+            />
+            <TypeLine
+              as="p"
+              text={t.hero.description}
+              eager
+              byWord
+              charMs={12}
+              className="mt-2.5 max-w-xl text-base leading-relaxed text-muted"
+            />
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <ButtonLink href="#proyectos">

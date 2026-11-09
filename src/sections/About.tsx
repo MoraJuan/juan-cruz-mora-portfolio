@@ -4,6 +4,7 @@ import { ExternalLink } from "@/components/ExternalLink";
 import { useLocale } from "@/components/LocaleProvider";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+import { TypeLine } from "@/components/TypeLine";
 import { site } from "@/data/site";
 
 export function About() {
@@ -27,14 +28,25 @@ export function About() {
 
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.85fr)]">
           <Reveal className="space-y-4">
-            {t.about.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="max-w-2xl text-[1.05rem] leading-relaxed text-text/90"
-              >
-                {paragraph}
-              </p>
-            ))}
+            {t.about.paragraphs.map((paragraph, index) =>
+              index === 0 ? (
+                <TypeLine
+                  key={paragraph}
+                  as="p"
+                  text={paragraph}
+                  byWord
+                  charMs={11}
+                  className="max-w-2xl text-[1.05rem] leading-relaxed text-text/90"
+                />
+              ) : (
+                <p
+                  key={paragraph}
+                  className="max-w-2xl text-[1.05rem] leading-relaxed text-text/90"
+                >
+                  {paragraph}
+                </p>
+              ),
+            )}
           </Reveal>
 
           <Reveal>

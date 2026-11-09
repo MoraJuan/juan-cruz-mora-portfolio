@@ -148,22 +148,53 @@ a {
   border-top: 1px solid var(--border);
 }
 
-.reveal {
-  opacity: 1;
-  transform: none;
+.type-line {
+  display: block;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    opacity: 0;
-    transform: translateY(12px);
-    transition:
-      opacity 500ms ease,
-      transform 500ms ease;
-  }
+.type-line__visual {
+  position: relative;
+  display: block;
+}
 
-  .reveal.is-visible {
+.type-line__spacer {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.type-line__typed {
+  position: absolute;
+  inset: 0;
+  display: block;
+  white-space: pre-wrap;
+}
+
+.type-caret {
+  display: inline-block;
+  width: 0.55ch;
+  margin-left: 0.05em;
+  border-right: 2px solid var(--accent);
+  height: 1.05em;
+  vertical-align: -0.12em;
+  animation: type-caret-blink 1s steps(1, end) infinite;
+}
+
+@keyframes type-caret-blink {
+  0%,
+  45% {
     opacity: 1;
-    transform: none;
+  }
+  46%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type-caret {
+    animation: none;
+    opacity: 0;
   }
 }
