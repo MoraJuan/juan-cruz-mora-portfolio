@@ -18,8 +18,8 @@ export function Hero() {
       aria-labelledby="hero-title"
     >
       <div className="container-page">
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.7fr)] lg:items-start lg:gap-6">
-          <div>
+        <div className="grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.7fr)] lg:items-start lg:gap-6">
+          <div className="min-w-0">
             <p className="eyebrow mb-2">{t.hero.indicator}</p>
             <h1
               id="hero-title"
@@ -44,7 +44,7 @@ export function Hero() {
             <div className="group relative mb-4 aspect-square w-full max-w-[220px] overflow-hidden rounded-full border border-border bg-bg-elevated transition-[border-color,transform] duration-200 ease-out motion-safe:hover:scale-[1.03] motion-safe:hover:border-accent sm:max-w-[240px] lg:max-w-[260px]">
               <Image
                 src="/profile.jpg"
-                alt="Juan Cruz Mora"
+                alt="Juan Cruz Mora, software developer based in San Juan, Argentina"
                 fill
                 priority
                 sizes="(min-width: 1024px) 260px, (min-width: 640px) 240px, 220px"

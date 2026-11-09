@@ -30,9 +30,9 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    document.documentElement.classList.toggle("nav-open", open);
     return () => {
-      document.body.style.overflow = "";
+      document.documentElement.classList.remove("nav-open");
     };
   }, [open]);
 
@@ -44,10 +44,10 @@ export function Navbar() {
           : "border-transparent bg-bg/70 backdrop-blur-sm"
       }`}
     >
-      <div className="container-page flex h-14 items-center justify-between gap-4 md:h-16">
+      <div className="container-page flex h-14 min-w-0 items-center justify-between gap-3 md:h-16 md:gap-4">
         <Link
           href="#inicio"
-          className="shrink-0 text-[0.98rem] font-semibold uppercase tracking-[0.06em] text-text md:text-[1.05rem]"
+          className="min-w-0 truncate text-[0.85rem] font-semibold uppercase tracking-[0.05em] text-text sm:text-[0.98rem] sm:tracking-[0.06em] md:text-[1.05rem]"
           onClick={() => setOpen(false)}
         >
           {site.name}
@@ -71,27 +71,22 @@ export function Navbar() {
           <ThemeToggle />
         </nav>
 
-        <div className="flex items-center gap-2 lg:hidden">
-          <CvDownload className="!py-2" />
-          <LanguageToggle />
-          <ThemeToggle />
-          <button
-            type="button"
-            className="inline-flex size-10 items-center justify-center rounded-sm border border-border text-text"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
-        </div>
+        <button
+          type="button"
+          className="inline-flex size-10 shrink-0 items-center justify-center rounded-sm border border-border text-text lg:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
+        </button>
       </div>
 
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-border bg-bg lg:hidden"
+          className="max-h-[min(100dvh-3.5rem,100%)] overflow-y-auto border-t border-border bg-bg lg:hidden"
         >
           <nav
             className="container-page flex flex-col gap-1 py-4"
@@ -107,6 +102,14 @@ export function Navbar() {
                 {item.label}
               </a>
             ))}
+
+            <div className="mt-3 flex flex-col gap-3 border-t border-border pt-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <LanguageToggle />
+                <ThemeToggle />
+              </div>
+              <CvDownload fullWidth />
+            </div>
           </nav>
         </div>
       ) : null}

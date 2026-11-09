@@ -21,8 +21,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <Reveal as="article" className="group border-t border-border py-12 md:py-16">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] lg:gap-14">
-        <header className="lg:sticky lg:top-24 lg:self-start">
+      <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] lg:gap-14">
+        <header className="min-w-0 lg:sticky lg:top-24 lg:self-start">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="font-mono text-xs tracking-wider text-muted">
               {number}
@@ -61,7 +61,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </header>
 
-        <div className="space-y-8">
+        <div className="min-w-0 space-y-8">
           <div>
             <h4 className="eyebrow mb-2">{t.projects.problem}</h4>
             <p className="leading-relaxed text-text/90">{copy.problem}</p>

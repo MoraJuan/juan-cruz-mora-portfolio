@@ -1,12 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
 import { LocaleProvider } from "@/components/LocaleProvider";
 import { Navbar } from "@/components/Navbar";
 import { SkipLink } from "@/components/SkipLink";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeScript } from "@/components/theme-script";
 import { site } from "@/data/site";
+import {
+  defaultTitle,
+  getSiteUrl,
+  siteDescriptionEn,
+  siteDescriptionEs,
+} from "@/lib/site-url";
 import "./globals.css";
 
 const sans = Geist({
@@ -19,25 +26,26 @@ const mono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://juancruzmora.dev";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.name} — Software Developer`,
+    default: defaultTitle,
     template: `%s — ${site.name}`,
   },
-  description:
-    "Software developer. Backend, APIs, and full stack. San Juan, Argentina.",
-  applicationName: site.name,
-  authors: [{ name: site.name, url: site.links.github }],
+  description: siteDescriptionEs,
+  applicationName: `${site.name} Portfolio`,
+  authors: [{ name: site.name, url: siteUrl }],
   creator: site.name,
+  publisher: site.name,
+  category: "technology",
   keywords: [
     "Juan Cruz Mora",
     "Software Developer",
+    "Portfolio",
     "Backend",
-    "Full Stack",
+    "APIs",
     "FastAPI",
     "Next.js",
     "PostgreSQL",
@@ -46,33 +54,41 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/",
+    languages: {
+      "es-AR": "/",
+      en: "/",
+      "x-default": "/",
+    },
   },
   openGraph: {
     type: "website",
     locale: "es_AR",
+    alternateLocale: ["en_US"],
     url: siteUrl,
-    title: `${site.name} — Software Developer`,
-    description:
-      "Software developer. Backend, APIs, and full stack. San Juan, Argentina.",
+    title: defaultTitle,
+    description: siteDescriptionEs,
     siteName: site.name,
-    images: [
-      {
-        url: "/profile.jpg",
-        width: 800,
-        height: 800,
-        alt: "Juan Cruz Mora",
-      },
-    ],
   },
   twitter: {
-    card: "summary",
-    title: `${site.name} — Software Developer`,
-    description:
-      "Software developer. Backend, APIs, and full stack. San Juan, Argentina.",
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: siteDescriptionEn,
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  formatDetection: {
+    email: false,
+    telephone: false,
+    address: false,
   },
 };
 
@@ -99,13 +115,16 @@ export default function RootLayout({
     >
       <head>
         <ThemeScript />
+        <JsonLd />
       </head>
-      <body className="flex min-h-full flex-col bg-bg font-sans text-text antialiased">
+      <body className="flex min-h-full max-w-full flex-col overflow-x-hidden bg-bg font-sans text-text antialiased">
         <ThemeProvider>
           <LocaleProvider>
             <SkipLink />
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main id="contenido" className="flex-1">
+              {children}
+            </main>
             <Footer />
           </LocaleProvider>
         </ThemeProvider>

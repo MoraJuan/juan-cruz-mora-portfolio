@@ -56,6 +56,12 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+html.nav-open {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -73,6 +79,8 @@ html {
 }
 
 body {
+  overflow-x: hidden;
+  max-width: 100%;
   background-color: var(--bg);
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -10%, var(--bg-sheen), transparent 55%),
@@ -86,6 +94,13 @@ body {
   color: var(--text);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
 }
 
 ::selection {
@@ -104,13 +119,15 @@ a {
 }
 
 .container-page {
-  width: min(1120px, calc(100% - 2.5rem));
+  width: min(1120px, calc(100% - 2rem));
+  max-width: 100%;
   margin-inline: auto;
+  padding-inline: 0;
 }
 
 @media (max-width: 480px) {
   .container-page {
-    width: min(1120px, calc(100% - 1.5rem));
+    width: min(1120px, calc(100% - 1.25rem));
   }
 }
 
