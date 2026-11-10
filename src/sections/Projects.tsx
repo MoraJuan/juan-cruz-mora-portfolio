@@ -22,7 +22,6 @@ export function Projects() {
       <Reveal>
         <SectionHeading
           id="projects-title"
-          eyebrow={t.projects.eyebrow}
           title={t.projects.title}
           description={t.projects.description}
         />

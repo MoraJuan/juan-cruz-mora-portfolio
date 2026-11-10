@@ -46,24 +46,19 @@ export type Dictionary = {
     toDark: string;
   };
   hero: {
-    indicator: string;
     headline: string;
     description: string;
     viewProjects: string;
     downloadCv: string;
-    locationLabel: string;
-    profileLabel: string;
-    linksLabel: string;
+    photoCaption: string;
   };
   about: {
-    eyebrow: string;
     title: string;
     description: string;
     paragraphs: string[];
     facts: { label: string; value: string }[];
   };
   projects: {
-    eyebrow: string;
     title: string;
     description: string;
     problem: string;
@@ -83,7 +78,6 @@ export type Dictionary = {
     items: Record<string, ProjectCopy>;
   };
   experience: {
-    eyebrow: string;
     title: string;
     description: string;
     skills: string;
@@ -109,7 +103,6 @@ export type Dictionary = {
     };
   };
   contact: {
-    eyebrow: string;
     title: string;
     text: string;
     email: string;

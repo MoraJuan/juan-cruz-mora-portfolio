@@ -4,11 +4,15 @@ import { ChevronDown } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { site } from "@/data/site";
 import { useLocale } from "./LocaleProvider";
+import SpecularButton from "./SpecularButton";
+import { getSpecularThemeProps } from "./specularTheme";
+import { useTheme } from "./ThemeProvider";
 
 type CvDownloadProps = {
   variant?: "primary" | "secondary";
   className?: string;
   fullWidth?: boolean;
+  specular?: boolean;
 };
 
 const variants = {
@@ -22,11 +26,14 @@ export function CvDownload({
   variant = "secondary",
   className = "",
   fullWidth = false,
+  specular = false,
 }: CvDownloadProps) {
   const { t } = useLocale();
+  const { theme } = useTheme();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
+  const specularProps = getSpecularThemeProps(theme);
 
   useEffect(() => {
     if (!open) return;
@@ -49,32 +56,53 @@ export function CvDownload({
     };
   }, [open]);
 
+  const label = (
+    <>
+      {t.cv.download}
+      <ChevronDown
+        className={`size-3.5 shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        aria-hidden
+      />
+    </>
+  );
+
   return (
     <div
       ref={rootRef}
       className={`relative inline-flex ${fullWidth ? "w-full" : ""}`}
     >
-      <button
-        type="button"
-        className={[
-          "inline-flex items-center justify-center gap-2 rounded-sm px-4 py-2.5 text-sm font-medium transition-colors duration-200",
-          variants[variant],
-          fullWidth ? "w-full" : "",
-          className,
-        ]
-          .filter(Boolean)
-          .join(" ")}
-        aria-haspopup="menu"
-        aria-expanded={open}
-        aria-controls={menuId}
-        onClick={() => setOpen((value) => !value)}
-      >
-        {t.cv.download}
-        <ChevronDown
-          className={`size-3.5 shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-          aria-hidden
-        />
-      </button>
+      {specular ? (
+        <SpecularButton
+          {...specularProps}
+          className={[fullWidth ? "w-full" : "", className]
+            .filter(Boolean)
+            .join(" ")}
+          aria-haspopup="menu"
+          aria-expanded={open}
+          aria-controls={menuId}
+          onClick={() => setOpen((value) => !value)}
+        >
+          {label}
+        </SpecularButton>
+      ) : (
+        <button
+          type="button"
+          className={[
+            "inline-flex items-center justify-center gap-2 rounded-sm px-4 py-2.5 text-sm font-medium transition-colors duration-200",
+            variants[variant],
+            fullWidth ? "w-full" : "",
+            className,
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          aria-haspopup="menu"
+          aria-expanded={open}
+          aria-controls={menuId}
+          onClick={() => setOpen((value) => !value)}
+        >
+          {label}
+        </button>
+      )}
 
       {open ? (
         <div

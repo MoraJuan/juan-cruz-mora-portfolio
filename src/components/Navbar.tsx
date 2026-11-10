@@ -1,33 +1,39 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { handleHashLinkClick } from "@/lib/scroll-to-hash";
-import { site } from "@/data/site";
+import { useEffect, useMemo, useState } from "react";
+import { handleHashLinkClick, scrollToHash } from "@/lib/scroll-to-hash";
 import { CvDownload } from "./CvDownload";
+import GooeyNav from "./GooeyNav";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLocale } from "./LocaleProvider";
+import { useTheme } from "./ThemeProvider";
 import { ThemeToggle } from "./ThemeToggle";
+
+const SECTION_IDS = [
+  "inicio",
+  "sobre-mi",
+  "proyectos",
+  "experiencia",
+  "contacto",
+] as const;
 
 export function Navbar() {
   const { t } = useLocale();
+  const { theme } = useTheme();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const navItems = [
-    { label: t.nav.home, href: "#inicio" },
-    { label: t.nav.about, href: "#sobre-mi" },
-    { label: t.nav.projects, href: "#proyectos" },
-    { label: t.nav.experience, href: "#experiencia" },
-    { label: t.nav.contact, href: "#contacto" },
-  ];
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const navItems = useMemo(
+    () => [
+      { label: t.nav.home, href: "#inicio" },
+      { label: t.nav.about, href: "#sobre-mi" },
+      { label: t.nav.projects, href: "#proyectos" },
+      { label: t.nav.experience, href: "#experiencia" },
+      { label: t.nav.contact, href: "#contacto" },
+    ],
+    [t],
+  );
 
   useEffect(() => {
     document.documentElement.classList.toggle("nav-open", open);
@@ -36,72 +42,102 @@ export function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (node): node is HTMLElement => Boolean(node),
+    );
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        const top = visible[0];
+        if (!top?.target.id) return;
+        const index = SECTION_IDS.indexOf(
+          top.target.id as (typeof SECTION_IDS)[number],
+        );
+        if (index >= 0) setActiveIndex(index);
+      },
+      {
+        rootMargin: "-20% 0px -55% 0px",
+        threshold: [0.1, 0.25, 0.5],
+      },
+    );
+
+    for (const section of sections) observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200 ${
-        scrolled || open
-          ? "border-border bg-bg/90 backdrop-blur-md"
-          : "border-transparent bg-bg/70 backdrop-blur-sm"
-      }`}
-    >
-      <div className="container-page flex h-14 min-w-0 items-center justify-between gap-3 md:h-16 md:gap-4">
-        <a
-          href="#inicio"
-          className="min-w-0 truncate text-[0.85rem] font-semibold uppercase tracking-[0.05em] text-text sm:text-[0.98rem] sm:tracking-[0.06em] md:text-[1.05rem]"
-          onClick={(event) =>
-            handleHashLinkClick(event, () => setOpen(false))
-          }
-        >
-          {site.name}
-        </a>
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
+      <div className="container-page relative flex items-start justify-end pt-4 md:pt-5">
+        <div className="pointer-events-auto absolute left-1/2 top-4 hidden max-w-[min(100%,42rem)] -translate-x-1/2 md:top-5 lg:block">
+          <GooeyNav
+            items={navItems}
+            activeIndex={activeIndex}
+            onChange={(index, item) => {
+              setActiveIndex(index);
+              if (item.href) scrollToHash(item.href);
+            }}
+            theme={theme}
+            size="md"
+            frame
+            particleCount={1}
+            spread={28}
+            animationTime={550}
+            timeVariance={220}
+            gooeyness={0.35}
+            wobble={0.45}
+            hoverEffect
+          />
+        </div>
 
-        <nav
-          className="hidden items-center gap-6 lg:flex"
-          aria-label={t.nav.primary}
-        >
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm text-muted transition-colors duration-200 hover:text-text"
-              onClick={(event) => handleHashLinkClick(event)}
-            >
-              {item.label}
-            </a>
-          ))}
-          <CvDownload className="!py-2" />
-          <LanguageToggle />
-          <ThemeToggle />
-        </nav>
+        <div className="pointer-events-auto flex items-center gap-2">
+          <div className="hidden items-center gap-2 rounded-full border border-border/70 bg-bg/70 px-2 py-1.5 shadow-[0_12px_30px_-18px_rgba(0,0,0,0.55)] backdrop-blur-md lg:flex">
+            <CvDownload className="!rounded-full !py-2" />
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
 
-        <button
-          type="button"
-          className="inline-flex size-10 shrink-0 items-center justify-center rounded-sm border border-border text-text lg:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
-        </button>
+          <button
+            type="button"
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-border/70 bg-bg/80 text-text shadow-[0_12px_30px_-18px_rgba(0,0,0,0.55)] backdrop-blur-md lg:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? (
+              <X className="size-5" aria-hidden />
+            ) : (
+              <Menu className="size-5" aria-hidden />
+            )}
+          </button>
+        </div>
       </div>
 
       {open ? (
         <div
           id="mobile-nav"
-          className="max-h-[min(100dvh-3.5rem,100%)] overflow-y-auto border-t border-border bg-bg lg:hidden"
+          className="pointer-events-auto mx-4 mt-3 max-h-[min(100dvh-5rem,100%)] overflow-y-auto rounded-2xl border border-border/70 bg-bg/95 shadow-[0_22px_44px_-22px_rgba(0,0,0,0.55)] backdrop-blur-md lg:hidden"
         >
-          <nav
-            className="container-page flex flex-col gap-1 py-4"
-            aria-label={t.nav.mobile}
-          >
-            {navItems.map((item) => (
+          <nav className="flex flex-col gap-1 p-4" aria-label={t.nav.mobile}>
+            {navItems.map((item, index) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-sm px-2 py-3 text-base text-text"
+                className={`rounded-xl px-3 py-3 text-base transition-colors ${
+                  index === activeIndex
+                    ? "bg-accent-soft text-text"
+                    : "text-text hover:bg-bg-elevated"
+                }`}
                 onClick={(event) =>
-                  handleHashLinkClick(event, () => setOpen(false))
+                  handleHashLinkClick(event, () => {
+                    setActiveIndex(index);
+                    setOpen(false);
+                  })
                 }
               >
                 {item.label}

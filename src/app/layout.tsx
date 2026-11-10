@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { LocaleProvider } from "@/components/LocaleProvider";
 import { Navbar } from "@/components/Navbar";
+import { SiteBackground } from "@/components/SiteBackground";
 import { SkipLink } from "@/components/SkipLink";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeScript } from "@/components/theme-script";
@@ -16,14 +17,20 @@ import {
 } from "@/lib/site-url";
 import "./globals.css";
 
-const sans = Geist({
+const display = Source_Serif_4({
+  variable: "--font-display",
+  subsets: ["latin"],
+});
+
+const sans = Source_Sans_3({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const mono = Geist_Mono({
+const mono = IBM_Plex_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 const siteUrl = getSiteUrl();
@@ -110,22 +117,25 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${sans.variable} ${mono.variable} h-full`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} h-full`}
       suppressHydrationWarning
     >
       <head>
         <ThemeScript />
         <JsonLd />
       </head>
-      <body className="flex min-h-full max-w-full flex-col overflow-x-hidden bg-bg font-sans text-text antialiased">
+      <body className="flex min-h-full max-w-full flex-col overflow-x-clip bg-bg font-sans text-text antialiased">
         <ThemeProvider>
           <LocaleProvider>
+            <SiteBackground />
             <SkipLink />
             <Navbar />
-            <main id="contenido" className="flex-1 pt-14 md:pt-16">
+            <main id="contenido" className="relative z-10 flex-1 pt-20 md:pt-24">
               {children}
             </main>
-            <Footer />
+            <div className="relative z-10">
+              <Footer />
+            </div>
           </LocaleProvider>
         </ThemeProvider>
       </body>

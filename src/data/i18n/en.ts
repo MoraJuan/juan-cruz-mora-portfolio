@@ -36,24 +36,20 @@ export const en: Dictionary = {
     toDark: "Switch to dark mode",
   },
   hero: {
-    indicator: "SOFTWARE DEVELOPER · ARGENTINA",
-    headline: "Software developer",
+    headline: "APIs, backends, and web interfaces",
     description:
-      "Focused on applications, APIs, databases, and web interfaces. Advanced undergraduate studies in Information Systems.",
+      "I build software from San Juan, Argentina. Advanced stage of a Bachelor's in Information Systems at UNSJ.",
     viewProjects: "View projects",
     downloadCv: "Download CV",
-    locationLabel: "Location",
-    profileLabel: "Profile",
-    linksLabel: "Links",
+    photoCaption: "San Juan, AR",
   },
   about: {
-    eyebrow: "01",
     title: "About",
     description:
-      "Information Systems background, software focus, and experience on real projects.",
+      "Studying systems, shipping products, and staying close to the real problem.",
     paragraphs: [
-      "I am in the advanced stage of a Bachelor's degree in Information Systems at Universidad Nacional de San Juan. My training is oriented toward building software for concrete problems.",
-      "I work on projects involving backend, frontend, databases, and infrastructure. I care about maintainable systems, clear technical decisions, and architectures that can grow without losing control.",
+      "I'm in the advanced stage of a Bachelor's in Information Systems at Universidad Nacional de San Juan. I work on concrete cases: APIs, data, admin panels, and automation.",
+      "I move between backend and full stack depending on what the problem needs. The focus is on systems that work well in production, not on locking into one tool.",
     ],
     facts: [
       { label: "Location", value: "San Juan, Argentina" },
@@ -68,7 +64,6 @@ export const en: Dictionary = {
     ],
   },
   projects: {
-    eyebrow: "02",
     title: "Projects",
     description:
       "Expand each case to see the problem, what was built, and the technical decisions.",
@@ -203,17 +198,16 @@ export const en: Dictionary = {
     },
   },
   experience: {
-    eyebrow: "03",
     title: "Experience and skills",
     description:
       "Stack and tools grouped by area, without artificial scores.",
     skills: "Skills",
     skillGroups: {
-      backend: "Backend Development",
-      frontend: "Frontend Development",
+      backend: "Backend",
+      frontend: "Frontend",
       databases: "Databases",
       infra: "Infrastructure & DevOps",
-      tools: "Tools & Workflow",
+      tools: "Tools & workflow",
       ai: "AI-assisted development",
     },
     trajectory: "Background",
@@ -222,7 +216,7 @@ export const en: Dictionary = {
         role: "Freelance Developer",
         org: "Independent",
         summary:
-          "Design and development of management systems and integrations. Work with FastAPI, Next.js, PostgreSQL, and automation for real operations.",
+          "Design and development of management systems and integrations. Automation and software built for real operations.",
       },
       tecnico: {
         role: "Technician",
@@ -240,9 +234,8 @@ export const en: Dictionary = {
     },
   },
   contact: {
-    eyebrow: "04",
     title: "Contact",
-    text: "Open to roles and projects where I can contribute through software development.",
+    text: "Got a role, a project, or a question? Write me.",
     email: "Email",
     location: "Location",
   },

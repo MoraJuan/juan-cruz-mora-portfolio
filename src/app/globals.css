@@ -47,6 +47,7 @@ html.dark {
   --color-accent-hover: var(--accent-hover);
   --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
   --font-mono: var(--font-mono);
 }
 
@@ -56,9 +57,11 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4rem;
+  scroll-padding-top: 5.5rem;
   scroll-snap-type: y proximity;
-  overflow-x: hidden;
+  /* clip avoids the overflow-x:hidden → overflow-y:auto containment that
+     breaks position:fixed WebGL backgrounds on mobile Safari/Chrome. */
+  overflow-x: clip;
   max-width: 100%;
 }
 
@@ -88,21 +91,16 @@ html.scroll-nav {
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   background-color: var(--bg);
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, var(--bg-sheen), transparent 55%),
-    linear-gradient(
-      180deg,
-      var(--bg-grad-top) 0%,
-      var(--bg-grad-mid) 40%,
-      var(--bg-grad-bottom) 100%
-    );
-  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
 }
 
 img,
@@ -149,8 +147,8 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: calc(100dvh - 3.5rem);
-  scroll-margin-top: 3.5rem;
+  min-height: calc(100dvh - 5rem);
+  scroll-margin-top: 5rem;
   scroll-snap-align: start;
   border-color: var(--border);
   padding-block: clamp(2.5rem, 5vw, 4.5rem);
@@ -159,8 +157,8 @@ a {
 
 @media (min-width: 768px) {
   .section-screen {
-    min-height: calc(100dvh - 4rem);
-    scroll-margin-top: 4rem;
+    min-height: calc(100dvh - 5rem);
+    scroll-margin-top: 5.5rem;
   }
 }
 
@@ -199,28 +197,6 @@ a {
 .section-scroll-hint:focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .section-scroll-hint {
-    animation: section-hint-bob 2.4s ease-in-out infinite;
-  }
-}
-
-@keyframes section-hint-bob {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 4px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .section-scroll-hint {
-    animation: none;
-  }
 }
 
 .eyebrow {

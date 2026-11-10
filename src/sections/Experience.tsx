@@ -34,7 +34,6 @@ export function Experience() {
       <Reveal>
         <SectionHeading
           id="experience-title"
-          eyebrow={t.experience.eyebrow}
           title={t.experience.title}
           description={t.experience.description}
         />
@@ -93,9 +92,9 @@ export function Experience() {
         </ol>
       </Reveal>
 
-      <Reveal className="border border-border bg-bg-elevated p-6 md:p-8">
+      <Reveal className="border-t border-border pt-6">
         <h3 className="eyebrow mb-4">{t.experience.educationTitle}</h3>
-        <p className="text-lg font-medium tracking-tight text-text">
+        <p className="font-display text-lg font-medium tracking-tight text-text">
           {t.experience.education.degree}
         </p>
         <p className="mt-1 text-sm text-muted">

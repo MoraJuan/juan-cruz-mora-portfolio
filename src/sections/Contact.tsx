@@ -23,7 +23,6 @@ export function Contact() {
       <Reveal>
         <SectionHeading
           id="contact-title"
-          eyebrow={t.contact.eyebrow}
           title={t.contact.title}
           description={t.contact.text}
         />

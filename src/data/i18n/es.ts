@@ -36,24 +36,20 @@ export const es: Dictionary = {
     toDark: "Cambiar a modo oscuro",
   },
   hero: {
-    indicator: "SOFTWARE DEVELOPER · ARGENTINA",
-    headline: "Desarrollador de software",
+    headline: "APIs, backends e interfaces web",
     description:
-      "Perfil orientado al desarrollo de aplicaciones, APIs, bases de datos e interfaces web. Formación avanzada en Licenciatura en Sistemas de Información.",
+      "Desarrollo software desde San Juan, Argentina. Estoy en la etapa avanzada de la Licenciatura en Sistemas de Información (UNSJ).",
     viewProjects: "Ver proyectos",
     downloadCv: "Descargar CV",
-    locationLabel: "Ubicación",
-    profileLabel: "Perfil",
-    linksLabel: "Enlaces",
+    photoCaption: "San Juan, AR",
   },
   about: {
-    eyebrow: "01",
     title: "Sobre mí",
     description:
-      "Formación en sistemas, orientación al desarrollo y experiencia en proyectos reales.",
+      "Estudio sistemas, construyo productos y me quedo cerca del problema real.",
     paragraphs: [
-      "Estoy en la etapa avanzada de la Licenciatura en Sistemas de Información en la Universidad Nacional de San Juan. Mi formación se orienta al desarrollo de software aplicado a problemas concretos.",
-      "Trabajo en proyectos que involucran backend, frontend, bases de datos e infraestructura. Me interesa diseñar sistemas mantenibles, con decisiones técnicas claras y una arquitectura que pueda crecer sin perder control.",
+      "Cursando la etapa avanzada de la Licenciatura en Sistemas de Información en la Universidad Nacional de San Juan. Trabajo sobre casos concretos: APIs, datos, paneles y automatizaciones.",
+      "Me muevo entre backend y full stack según lo que pida el problema. El foco es que el sistema funcione bien en producción, no en casarme con una herramienta.",
     ],
     facts: [
       { label: "Ubicación", value: "San Juan, Argentina" },
@@ -62,13 +58,12 @@ export const es: Dictionary = {
         value: "Lic. en Sistemas de Información — UNSJ (en curso)",
       },
       {
-        label: "Especialización",
+        label: "Enfoque",
         value: "Backend, APIs y desarrollo full stack",
       },
     ],
   },
   projects: {
-    eyebrow: "02",
     title: "Proyectos",
     description:
       "Expandí cada caso para ver el problema, lo construido y las decisiones técnicas.",
@@ -203,17 +198,16 @@ export const es: Dictionary = {
     },
   },
   experience: {
-    eyebrow: "03",
     title: "Experiencia y conocimientos",
     description:
       "Stack y herramientas agrupadas por área, sin puntuaciones artificiales.",
     skills: "Habilidades",
     skillGroups: {
-      backend: "Backend Development",
-      frontend: "Frontend Development",
-      databases: "Databases",
-      infra: "Infrastructure & DevOps",
-      tools: "Tools & Workflow",
+      backend: "Backend",
+      frontend: "Frontend",
+      databases: "Bases de datos",
+      infra: "Infraestructura y DevOps",
+      tools: "Herramientas y flujo",
       ai: "Desarrollo asistido por IA",
     },
     trajectory: "Trayectoria",
@@ -222,7 +216,7 @@ export const es: Dictionary = {
         role: "Desarrollador Freelance",
         org: "Independiente",
         summary:
-          "Diseño y desarrollo de sistemas de gestión e integraciones. Trabajo con FastAPI, Next.js, PostgreSQL y automatizaciones orientadas a operación real.",
+          "Diseño y desarrollo de sistemas de gestión e integraciones. Automatizaciones y software orientados a operación real.",
       },
       tecnico: {
         role: "Técnico",
@@ -240,9 +234,8 @@ export const es: Dictionary = {
     },
   },
   contact: {
-    eyebrow: "04",
     title: "Contacto",
-    text: "Estoy abierto a oportunidades laborales y proyectos donde pueda aportar desde el desarrollo de software.",
+    text: "Si tenés un rol, un proyecto o una pregunta, escribime.",
     email: "Correo",
     location: "Ubicación",
   },
