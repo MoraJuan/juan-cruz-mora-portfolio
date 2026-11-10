@@ -75,10 +75,6 @@ export function Hero() {
           </div>
 
           <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
-            <span>{site.location}</span>
-            <span className="text-border" aria-hidden>
-              /
-            </span>
             <ExternalLink href={site.links.github}>GitHub</ExternalLink>
             <ExternalLink href={site.links.linkedin}>LinkedIn</ExternalLink>
           </p>
