@@ -8,7 +8,7 @@ import { useLocale } from "@/components/LocaleProvider";
 import SpecularButton from "@/components/SpecularButton";
 import { getSpecularThemeProps } from "@/components/specularTheme";
 import { SectionFrame } from "@/components/SectionFrame";
-import TechText from "@/components/TechText";
+import StrokeText from "@/components/StrokeText";
 import { useTheme } from "@/components/ThemeProvider";
 import { TypeLine } from "@/components/TypeLine";
 import { site } from "@/data/site";
@@ -29,24 +29,24 @@ export function Hero() {
     >
       <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-14">
         <div className="min-w-0">
-          <div className="font-display relative h-[3.75rem] w-full max-w-xl text-text sm:h-[4.5rem] lg:h-[5.25rem]">
-            <TechText
+          <div className="font-display w-full max-w-xl text-text [&_.stroke-text__svg]:ml-0 [&_.stroke-text__svg]:mr-auto">
+            <StrokeText
               text={site.name}
-              fontWeight={500}
+              strokeColor="var(--text)"
+              fillColor="currentColor"
+              strokeStyle="solid"
+              strokeWidth={1.4}
+              drawDuration={1.6}
+              fillDelay={0.2}
+              stagger={0.05}
+              fillMode="wipe"
+              wipeFrom="left"
+              trigger="mount"
+              hoverRedraw
+              fontFamily="inherit"
               fontSize={72}
-              letterSpacing={-0.04}
-              align="left"
-              color="currentColor"
-              accentColor="currentColor"
-              reveal="letter"
-              dashLength={4}
-              dashGap={2}
-              specks={15}
-              intro="none"
-              introDuration={2}
-              clickKick
-              guides={false}
-              sweep
+              fontWeight={500}
+              letterSpacing={-2.5}
             />
           </div>
 

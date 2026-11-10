@@ -200,7 +200,7 @@ export const en: Dictionary = {
   experience: {
     title: "Experience and skills",
     description:
-      "Stack and tools grouped by area, without artificial scores.",
+      "Technologies and tools I work with, grouped by area.",
     skills: "Skills",
     skillGroups: {
       backend: "Backend",
