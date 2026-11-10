@@ -36,9 +36,9 @@ export const es: Dictionary = {
     toDark: "Cambiar a modo oscuro",
   },
   hero: {
-    headline: "APIs, backends e interfaces web",
+    headline: "Desarrollador de software",
     description:
-      "Desarrollo software desde San Juan, Argentina. Estoy en la etapa avanzada de la Licenciatura en Sistemas de Información (UNSJ).",
+      "Construyo APIs, backends e interfaces web con foco en claridad y sistemas mantenibles.",
     viewProjects: "Ver proyectos",
     downloadCv: "Descargar CV",
     photoCaption: "San Juan, AR",

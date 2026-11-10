@@ -36,9 +36,9 @@ export const en: Dictionary = {
     toDark: "Switch to dark mode",
   },
   hero: {
-    headline: "APIs, backends, and web interfaces",
+    headline: "Software developer",
     description:
-      "I build software from San Juan, Argentina. Advanced stage of a Bachelor's in Information Systems at UNSJ.",
+      "I build APIs, backends, and web interfaces with a focus on clarity and maintainable systems.",
     viewProjects: "View projects",
     downloadCv: "Download CV",
     photoCaption: "San Juan, AR",

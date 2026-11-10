@@ -8,7 +8,7 @@ const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : us
 
 const THEMES = {
   dark: {
-    '--gn-frame': 'rgba(38, 35, 46, 0.66)',
+    '--gn-frame': 'color-mix(in srgb, var(--bg) 70%, transparent)',
     '--gn-frame-edge': 'rgba(255, 255, 255, 0.08)',
     '--gn-frame-highlight': 'rgba(255, 255, 255, 0.07)',
     '--gn-frame-shadow': '0 22px 44px -20px rgba(0, 0, 0, 0.8), 0 6px 16px -8px rgba(0, 0, 0, 0.5)',
@@ -16,7 +16,7 @@ const THEMES = {
     '--gn-muted': 'rgba(244, 244, 245, 0.62)'
   },
   light: {
-    '--gn-frame': 'rgba(240, 240, 243, 0.8)',
+    '--gn-frame': 'color-mix(in srgb, var(--bg) 80%, transparent)',
     '--gn-frame-edge': 'rgba(24, 24, 27, 0.07)',
     '--gn-frame-highlight': 'rgba(255, 255, 255, 0.95)',
     '--gn-frame-shadow': '0 22px 44px -22px rgba(24, 24, 27, 0.3), 0 6px 16px -10px rgba(24, 24, 27, 0.16)',
