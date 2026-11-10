@@ -36,9 +36,9 @@ export const es: Dictionary = {
     toDark: "Cambiar a modo oscuro",
   },
   hero: {
-    headline: "Desarrollador de software",
+    headline: "Full-Stack AI Engineer",
     description:
-      "Construyo APIs, backends e interfaces web con foco en claridad y sistemas mantenibles.",
+      "Diseño productos full-stack y sistemas con agentes: APIs, datos, interfaces y orquestación de flujos de IA aplicados a operación real.",
     viewProjects: "Ver proyectos",
     downloadCv: "Descargar CV",
     photoCaption: "San Juan, AR",
@@ -46,10 +46,10 @@ export const es: Dictionary = {
   about: {
     title: "Sobre mí",
     description:
-      "Estudio sistemas, construyo productos y me quedo cerca del problema real.",
+      "Estudio sistemas, construyo productos y orquesto agentes cerca del problema real.",
     paragraphs: [
-      "Cursando la etapa avanzada de la Licenciatura en Sistemas de Información en la Universidad Nacional de San Juan. Trabajo sobre casos concretos: APIs, datos, paneles y automatizaciones.",
-      "Me muevo entre backend y full stack según lo que pida el problema. El foco es que el sistema funcione bien en producción, no en casarme con una herramienta.",
+      "Cursando la etapa avanzada de la Licenciatura en Sistemas de Información en la Universidad Nacional de San Juan. Trabajo sobre casos concretos: APIs, datos, paneles, automatizaciones y pipelines con OCR/LLM cuando aportan.",
+      "Me muevo en full stack y en orquestación de agentes según lo que pida el problema. El foco es que el sistema funcione bien en producción, no en casarme con una herramienta.",
     ],
     facts: [
       { label: "Ubicación", value: "San Juan, Argentina" },
@@ -59,14 +59,16 @@ export const es: Dictionary = {
       },
       {
         label: "Enfoque",
-        value: "Backend, APIs y desarrollo full stack",
+        value: "Full-stack, APIs y orquestación de agentes",
       },
     ],
   },
   projects: {
     title: "Proyectos",
     description:
-      "Expandí cada caso para ver el problema, lo construido y las decisiones técnicas.",
+      "Productos full-stack y automatización inteligente. Tocá un proyecto para abrir el caso completo.",
+    openCase: "Ver caso",
+    close: "Cerrar proyecto",
     problem: "Problema",
     built: "Qué se desarrolló",
     decisions: "Decisiones técnicas",
@@ -84,12 +86,13 @@ export const es: Dictionary = {
     items: {
       safeshot: {
         tagline:
-          "Censura de datos sensibles en capturas de pantalla, integrada a ShareX.",
+          "Pipeline OCR/LLM para censurar datos sensibles en capturas, integrado a ShareX.",
         problem:
           "Al compartir capturas de soporte, demos o documentación es fácil filtrar emails, tarjetas, tokens, DNI, CUIL, CBU o teléfonos. El riesgo aparece después de capturar, cuando la imagen ya está lista para portapapeles, disco o un host remoto.",
         built: [
           "Extensión del pipeline de ShareX en el punto DoAfterCaptureJobs, antes de copiar, guardar o subir.",
           "Servicio local en FastAPI que recibe la imagen, ejecuta OCR con Tesseract y aplica reglas determinísticas de detección.",
+          "Capa opcional de LLM para reforzar detección, con consentimiento explícito por captura.",
           "Flujo de revisión original | censurada dentro de ShareX, con opción de continuar o cancelar.",
           "Documentación del análisis de ingeniería inversa sobre ShareX v21.0.0 y un parche exportable reproducible.",
         ],
@@ -174,13 +177,13 @@ export const es: Dictionary = {
       },
       pilates: {
         tagline:
-          "Sistema de gestión para un estudio de pilates: alumnos, horarios, reservas y pagos.",
+          "Gestión de estudio con panel full-stack y bot de WhatsApp para reservas.",
         problem:
           "Un estudio necesita centralizar alumnos, profesores, turnos, planes y comprobantes, y ofrecer un canal de atención que reduzca fricción en la reserva y la consulta de disponibilidad.",
         built: [
           "Panel administrativo para alumnos, profesores, horarios, reservas, planes y pagos.",
           "Backend con FastAPI y PostgreSQL; frontend en React.",
-          "Bot de WhatsApp integrado como canal de reserva y consulta, sincronizado con el panel.",
+          "Bot de WhatsApp como agente de atención para reserva y consulta, sincronizado con el panel.",
           "Versión de demostración con datos de prueba, sin identidad comercial real.",
         ],
         decisions: [
@@ -208,15 +211,15 @@ export const es: Dictionary = {
       databases: "Bases de datos",
       infra: "Infraestructura y DevOps",
       tools: "Herramientas y flujo",
-      ai: "Desarrollo asistido por IA",
+      ai: "IA y agentes",
     },
     trajectory: "Trayectoria",
     roles: {
       freelance: {
-        role: "Desarrollador Freelance",
+        role: "Full-Stack AI Engineer",
         org: "Independiente",
         summary:
-          "Diseño y desarrollo de sistemas de gestión e integraciones. Automatizaciones y software orientados a operación real.",
+          "Productos full-stack, integraciones y automatizaciones. Gran parte del trabajo se apoya en orquestar agentes para diseñar, construir y entregar sistemas de operación real.",
       },
       tecnico: {
         role: "Técnico",

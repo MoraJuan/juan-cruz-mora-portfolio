@@ -10,8 +10,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "Go" },
       { name: "TypeScript" },
       { name: "Node.js" },
-      { name: "NestJS" },
-      { name: "Flask" },
       { name: "REST APIs" },
     ],
   },
@@ -33,9 +31,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "SQLAlchemy" },
       { name: "Prisma" },
       { name: "Alembic" },
-      { name: "MySQL" },
       { name: "Redis" },
-      { name: "SQLite" },
     ],
   },
   {
@@ -48,7 +44,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "Railway" },
       { name: "Vercel" },
       { name: "AWS" },
-      { name: "Cloudflare" },
     ],
   },
   {
@@ -59,12 +54,17 @@ export const skillGroups: SkillGroup[] = [
       { name: "Modelado de datos" },
       { name: "Integraciones" },
       { name: "Automatizaciones" },
-      { name: "Pruebas y validación" },
     ],
   },
   {
     id: "ai",
-    title: "AI-assisted development",
-    items: [{ name: "Claude" }, { name: "Codex" }, { name: "Cursor" }],
+    title: "AI & Agents",
+    items: [
+      { name: "Agent orchestration" },
+      { name: "Cursor" },
+      { name: "Claude" },
+      { name: "Codex" },
+      { name: "OCR / LLM pipelines" },
+    ],
   },
 ];

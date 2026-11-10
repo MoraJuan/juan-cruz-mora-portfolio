@@ -33,19 +33,19 @@ export function Hero() {
             <StrokeText
               text={site.name}
               strokeColor="var(--text)"
-              fillColor="currentColor"
+              fillColor="var(--text)"
               strokeStyle="solid"
-              strokeWidth={1.4}
-              drawDuration={1.6}
-              fillDelay={0.2}
-              stagger={0.05}
+              strokeWidth={2.2}
+              drawDuration={1.2}
+              fillDelay={0.05}
+              stagger={0.04}
               fillMode="wipe"
               wipeFrom="left"
               trigger="mount"
               hoverRedraw
               fontFamily="inherit"
               fontSize={72}
-              fontWeight={500}
+              fontWeight={600}
               letterSpacing={-2.5}
             />
           </div>

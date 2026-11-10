@@ -6,9 +6,9 @@ export function getSiteUrl() {
 }
 
 export const siteDescriptionEs =
-  "Portfolio de Juan Cruz Mora, software developer en San Juan, Argentina. Backend, APIs, bases de datos e interfaces web.";
+  "Portfolio de Juan Cruz Mora, Full-Stack AI Engineer en San Juan, Argentina. Productos full-stack, APIs e orquestación de agentes.";
 
 export const siteDescriptionEn =
-  "Portfolio of Juan Cruz Mora, software developer based in San Juan, Argentina. Backend, APIs, databases, and web interfaces.";
+  "Portfolio of Juan Cruz Mora, Full-Stack AI Engineer based in San Juan, Argentina. Full-stack products, APIs, and agent orchestration.";
 
-export const defaultTitle = `${site.name} — Software Developer`;
+export const defaultTitle = `${site.name} — Full-Stack AI Engineer`;

@@ -47,7 +47,7 @@ export const projects: Project[] = [
     name: "SafeShot",
     year: "2026",
     status: "shipped",
-    stack: ["C#", "Python", "FastAPI", "Tesseract OCR", "ShareX", "Docker"],
+    stack: ["C#", "Python", "FastAPI", "Tesseract OCR", "LLM", "ShareX", "Docker"],
     images: [
       { src: "/projects/safeshot/before.png", key: "before" },
       { src: "/projects/safeshot/after.png", key: "after" },

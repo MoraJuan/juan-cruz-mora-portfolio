@@ -47,18 +47,19 @@ export function SiteBackground() {
         style={{
           background: isDark
             ? "radial-gradient(140% 90% at 10% 0%, rgba(110,180,196,0.55) 0%, transparent 52%), radial-gradient(100% 80% at 95% 70%, rgba(42,111,130,0.45) 0%, transparent 55%), linear-gradient(160deg, rgba(31,79,97,0.35) 0%, transparent 45%)"
-            : "radial-gradient(140% 90% at 10% 0%, rgba(18,56,70,0.42) 0%, transparent 52%), radial-gradient(100% 80% at 95% 70%, rgba(37,84,104,0.3) 0%, transparent 55%), linear-gradient(160deg, rgba(8,32,40,0.2) 0%, transparent 45%)",
+            : "radial-gradient(140% 90% at 10% 0%, rgba(18,56,70,0.22) 0%, transparent 52%), radial-gradient(100% 80% at 95% 70%, rgba(37,84,104,0.16) 0%, transparent 55%), linear-gradient(160deg, rgba(8,32,40,0.1) 0%, transparent 45%)",
         }}
       />
       {/*
         Keep transparent so dark pattern regions don't paint opaque near-black
         over the CSS tint. Mobile uses brighter bands + higher opacity.
+        Light mode stays softer so black type remains readable.
       */}
       <div
         className={`absolute inset-0 ${
           isDark
             ? "opacity-70 max-md:opacity-90"
-            : "opacity-85 max-md:opacity-95"
+            : "opacity-40 max-md:opacity-50"
         }`}
       >
         <ColorBends
@@ -81,7 +82,7 @@ export function SiteBackground() {
           parallax={isMobile ? 0.15 : 0.35}
           iterations={2}
           intensity={
-            isDark ? (isMobile ? 1.85 : 1.25) : isMobile ? 1.5 : 1.35
+            isDark ? (isMobile ? 1.85 : 1.25) : isMobile ? 0.75 : 0.65
           }
           bandWidth={isMobile ? 7 : 5}
           transparent
@@ -92,7 +93,7 @@ export function SiteBackground() {
         style={{
           background: isDark
             ? "linear-gradient(180deg, rgba(18,19,20,0.1) 0%, rgba(18,19,20,0.28) 55%, rgba(18,19,20,0.52) 100%)"
-            : "linear-gradient(180deg, rgba(247,247,245,0.1) 0%, rgba(247,247,245,0.28) 50%, rgba(247,247,245,0.55) 100%)",
+            : "linear-gradient(180deg, rgba(244,244,241,0.55) 0%, rgba(244,244,241,0.72) 45%, rgba(244,244,241,0.88) 100%)",
         }}
       />
     </div>

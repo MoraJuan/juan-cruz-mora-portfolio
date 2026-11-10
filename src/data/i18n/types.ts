@@ -61,6 +61,8 @@ export type Dictionary = {
   projects: {
     title: string;
     description: string;
+    openCase: string;
+    close: string;
     problem: string;
     built: string;
     decisions: string;

@@ -49,9 +49,10 @@ export const metadata: Metadata = {
   category: "technology",
   keywords: [
     "Juan Cruz Mora",
-    "Software Developer",
+    "Full-Stack AI Engineer",
     "Portfolio",
-    "Backend",
+    "Agent orchestration",
+    "Full stack",
     "APIs",
     "FastAPI",
     "Next.js",
@@ -101,7 +102,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F7F7F5" },
+    { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
     { media: "(prefers-color-scheme: dark)", color: "#121314" },
   ],
   width: "device-width",

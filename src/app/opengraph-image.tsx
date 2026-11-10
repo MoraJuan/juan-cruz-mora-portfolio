@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/data/site";
 
-export const alt = `${site.name} — Software Developer · San Juan, Argentina`;
+export const alt = `${site.name} — Full-Stack AI Engineer · San Juan, Argentina`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -29,7 +29,7 @@ export default function OpenGraphImage() {
             width: 72,
             height: 72,
             borderRadius: 18,
-            background: "#1A4A5C",
+            background: "#143d4d",
             color: "#F7F7F5",
             fontSize: 40,
             fontWeight: 600,
@@ -51,7 +51,7 @@ export default function OpenGraphImage() {
               fontSize: 22,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "#777777",
+              color: "#4a4a47",
             }}
           >
             Portfolio
@@ -62,7 +62,7 @@ export default function OpenGraphImage() {
               fontSize: 72,
               lineHeight: 1.05,
               fontWeight: 500,
-              color: "#171717",
+              color: "#0e0e0e",
               letterSpacing: "-0.03em",
             }}
           >
@@ -72,7 +72,7 @@ export default function OpenGraphImage() {
             style={{
               display: "flex",
               fontSize: 34,
-              color: "#1A4A5C",
+              color: "#143d4d",
             }}
           >
             {site.role}
@@ -82,12 +82,12 @@ export default function OpenGraphImage() {
               display: "flex",
               marginTop: 8,
               fontSize: 24,
-              color: "#777777",
+              color: "#4a4a47",
               maxWidth: 820,
               lineHeight: 1.4,
             }}
           >
-            {`Backend, APIs, databases, and web interfaces · ${site.location}`}
+            {`Full-stack products, APIs, and agent orchestration · ${site.location}`}
           </div>
         </div>
       </div>

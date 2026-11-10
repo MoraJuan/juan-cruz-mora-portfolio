@@ -31,7 +31,7 @@ export function About() {
           {t.about.paragraphs.map((paragraph) => (
             <p
               key={paragraph}
-              className="max-w-2xl text-[1.05rem] leading-relaxed text-text/90"
+              className="max-w-2xl text-[1.05rem] leading-relaxed text-text"
             >
               {paragraph}
             </p>

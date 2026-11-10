@@ -1,7 +1,7 @@
 export const site = {
   name: "Juan Cruz Mora",
   shortName: "Juan Cruz Mora",
-  role: "Software Developer",
+  role: "Full-Stack AI Engineer",
   location: "San Juan, Argentina",
   links: {
     email: "mailto:juancruzmora26@gmail.com",

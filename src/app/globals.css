@@ -4,19 +4,19 @@
 @custom-variant dark (&:where(html.dark, html.dark *));
 
 html {
-  --bg: #f7f7f5;
+  --bg: #f4f4f1;
   --bg-elevated: #ffffff;
-  --text: #171717;
-  --muted: #777777;
-  --border: #e5e5e2;
-  --accent: #1a4a5c;
-  --accent-hover: #153d4c;
-  --accent-soft: #e8f0f3;
-  --focus: #1a4a5c;
-  --bg-sheen: rgba(26, 74, 92, 0.04);
-  --bg-grad-top: #f8f8f6;
-  --bg-grad-mid: #f7f7f5;
-  --bg-grad-bottom: #f5f5f2;
+  --text: #050505;
+  --muted: #2f2f2c;
+  --border: #c8c8c2;
+  --accent: #0f323f;
+  --accent-hover: #0a242e;
+  --accent-soft: #dce8ed;
+  --focus: #0f323f;
+  --bg-sheen: rgba(15, 50, 63, 0.06);
+  --bg-grad-top: #f5f5f2;
+  --bg-grad-mid: #f4f4f1;
+  --bg-grad-bottom: #f1f1ed;
   color-scheme: light;
 }
 
@@ -56,9 +56,10 @@ html.dark {
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Native momentum on touch; smooth only where pointer is fine (below). */
+  scroll-behavior: auto;
   scroll-padding-top: 5.5rem;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: none;
   /* clip avoids the overflow-x:hidden → overflow-y:auto containment that
      breaks position:fixed WebGL backgrounds on mobile Safari/Chrome. */
   overflow-x: clip;
@@ -75,10 +76,26 @@ html.scroll-nav {
   scroll-behavior: auto;
 }
 
+/* Desktop only: light proximity snap. Touch keeps free scrolling. */
+@media (min-width: 768px) and (pointer: fine) {
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+  }
+
+  .section-screen {
+    scroll-snap-align: start;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
     scroll-snap-type: none;
+  }
+
+  .section-screen {
+    scroll-snap-align: none;
   }
 
   *,
@@ -147,9 +164,10 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: calc(100dvh - 5rem);
+  /* Mobile: content height only — full-viewport min-height + snap felt sticky. */
+  min-height: 0;
   scroll-margin-top: 5rem;
-  scroll-snap-align: start;
+  scroll-snap-align: none;
   border-color: var(--border);
   padding-block: clamp(2.5rem, 5vw, 4.5rem);
   padding-bottom: clamp(3.5rem, 6vw, 5.5rem);

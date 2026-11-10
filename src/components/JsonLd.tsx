@@ -21,7 +21,9 @@ export function JsonLd() {
     },
     sameAs: [site.links.github, site.links.linkedin],
     knowsAbout: [
-      "Backend development",
+      "Full-stack development",
+      "AI engineering",
+      "Agent orchestration",
       "APIs",
       "PostgreSQL",
       "FastAPI",
@@ -36,7 +38,7 @@ export function JsonLd() {
     name: `${site.name} — Portfolio`,
     url: siteUrl,
     description:
-      "Portfolio profesional de Juan Cruz Mora, software developer.",
+      "Portfolio profesional de Juan Cruz Mora, Full-Stack AI Engineer.",
     inLanguage: ["es", "en"],
     author: {
       "@type": "Person",

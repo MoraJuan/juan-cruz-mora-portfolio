@@ -36,9 +36,9 @@ export const en: Dictionary = {
     toDark: "Switch to dark mode",
   },
   hero: {
-    headline: "Software developer",
+    headline: "Full-Stack AI Engineer",
     description:
-      "I build APIs, backends, and web interfaces with a focus on clarity and maintainable systems.",
+      "I design full-stack products and agent-driven systems: APIs, data, interfaces, and orchestrated AI workflows for real operations.",
     viewProjects: "View projects",
     downloadCv: "Download CV",
     photoCaption: "San Juan, AR",
@@ -46,10 +46,10 @@ export const en: Dictionary = {
   about: {
     title: "About",
     description:
-      "Studying systems, shipping products, and staying close to the real problem.",
+      "Studying systems, shipping products, and orchestrating agents close to the real problem.",
     paragraphs: [
-      "I'm in the advanced stage of a Bachelor's in Information Systems at Universidad Nacional de San Juan. I work on concrete cases: APIs, data, admin panels, and automation.",
-      "I move between backend and full stack depending on what the problem needs. The focus is on systems that work well in production, not on locking into one tool.",
+      "I'm in the advanced stage of a Bachelor's in Information Systems at Universidad Nacional de San Juan. I work on concrete cases: APIs, data, admin panels, automation, and OCR/LLM pipelines when they add leverage.",
+      "I move across full stack and agent orchestration depending on what the problem needs. The focus is on systems that work well in production, not on locking into one tool.",
     ],
     facts: [
       { label: "Location", value: "San Juan, Argentina" },
@@ -59,14 +59,16 @@ export const en: Dictionary = {
       },
       {
         label: "Focus",
-        value: "Backend, APIs, and full-stack development",
+        value: "Full-stack, APIs, and agent orchestration",
       },
     ],
   },
   projects: {
     title: "Projects",
     description:
-      "Expand each case to see the problem, what was built, and the technical decisions.",
+      "Full-stack products and intelligent automation. Tap a project to open the full case.",
+    openCase: "View case",
+    close: "Close project",
     problem: "Problem",
     built: "What was built",
     decisions: "Technical decisions",
@@ -84,12 +86,13 @@ export const en: Dictionary = {
     items: {
       safeshot: {
         tagline:
-          "Sensitive-data redaction for screenshots, integrated with ShareX.",
+          "OCR/LLM pipeline for sensitive-data redaction in screenshots, integrated with ShareX.",
         problem:
           "When sharing support screenshots, demos, or documentation, it is easy to leak emails, cards, tokens, national IDs, tax IDs, bank accounts, or phone numbers. The risk appears after capture, once the image is ready for clipboard, disk, or remote upload.",
         built: [
           "ShareX pipeline extension at DoAfterCaptureJobs, before copy, save, or upload.",
           "Local FastAPI service that receives the image, runs Tesseract OCR, and applies deterministic detection rules.",
+          "Optional LLM layer to strengthen detection, with explicit consent per capture.",
           "Original | redacted review flow inside ShareX, with continue or cancel.",
           "Reverse-engineering notes for ShareX v21.0.0 and a reproducible exportable patch.",
         ],
@@ -174,13 +177,13 @@ export const en: Dictionary = {
       },
       pilates: {
         tagline:
-          "Management system for a pilates studio: students, schedules, bookings, and payments.",
+          "Studio management with a full-stack panel and WhatsApp booking agent.",
         problem:
           "A studio needs to centralize students, teachers, class slots, plans, and payment receipts, and offer a support channel that reduces friction when booking or checking availability.",
         built: [
           "Admin panel for students, teachers, schedules, bookings, plans, and payments.",
           "FastAPI + PostgreSQL backend and React frontend.",
-          "WhatsApp bot integrated as a booking and inquiry channel, synced with the panel.",
+          "WhatsApp bot as an attention agent for booking and inquiry, synced with the panel.",
           "Demonstration build with sample data and no real business identity.",
         ],
         decisions: [
@@ -208,15 +211,15 @@ export const en: Dictionary = {
       databases: "Databases",
       infra: "Infrastructure & DevOps",
       tools: "Tools & workflow",
-      ai: "AI-assisted development",
+      ai: "AI & Agents",
     },
     trajectory: "Background",
     roles: {
       freelance: {
-        role: "Freelance Developer",
+        role: "Full-Stack AI Engineer",
         org: "Independent",
         summary:
-          "Design and development of management systems and integrations. Automation and software built for real operations.",
+          "Full-stack products, integrations, and automation. Much of the work is orchestrating agents to design, build, and ship systems for real operations.",
       },
       tecnico: {
         role: "Technician",

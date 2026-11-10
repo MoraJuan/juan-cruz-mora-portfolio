@@ -29,11 +29,11 @@ export function getSpecularThemeProps(theme: Theme) {
 
   return {
     ...shared,
-    tint: "#1a4a5c",
-    tintOpacity: 0.92,
+    tint: "#0f323f",
+    tintOpacity: 0.94,
     textColor: "#ffffff",
     lineColor: "#c5e0e8",
-    baseColor: "#1a4a5c",
+    baseColor: "#0f323f",
     intensity: 0.55,
     idleIntensity: 0.4,
     glow: 0.35,
