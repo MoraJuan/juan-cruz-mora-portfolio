@@ -71,7 +71,7 @@ export const en: Dictionary = {
     eyebrow: "02",
     title: "Projects",
     description:
-      "Concrete cases focused on the problem, what was built, and the technical decisions.",
+      "Expand each case to see the problem, what was built, and the technical decisions.",
     problem: "Problem",
     built: "What was built",
     decisions: "Technical decisions",

@@ -7,6 +7,7 @@ export const skillGroups: SkillGroup[] = [
     items: [
       { name: "Python" },
       { name: "FastAPI" },
+      { name: "Go" },
       { name: "TypeScript" },
       { name: "Node.js" },
       { name: "NestJS" },

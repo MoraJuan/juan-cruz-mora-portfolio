@@ -122,7 +122,7 @@ export default function RootLayout({
           <LocaleProvider>
             <SkipLink />
             <Navbar />
-            <main id="contenido" className="flex-1">
+            <main id="contenido" className="flex-1 pt-14 md:pt-16">
               {children}
             </main>
             <Footer />

@@ -1,11 +1,10 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { ExternalLink } from "@/components/ExternalLink";
 import { useLocale } from "@/components/LocaleProvider";
 import { Reveal } from "@/components/Reveal";
-import { TypeLine } from "@/components/TypeLine";
 import type { Project } from "@/lib/types";
 
 type ProjectCardProps = {
@@ -21,38 +20,54 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   if (!copy) return null;
 
   return (
-    <Reveal as="article" className="group border-t border-border py-12 md:py-16">
-      <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] lg:gap-14">
-        <header className="min-w-0 lg:sticky lg:top-24 lg:self-start">
-          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span className="font-mono text-xs tracking-wider text-muted">
-              {number}
-            </span>
-            {project.year ? (
-              <span className="font-mono text-xs tracking-wider text-muted">
-                {project.year}
-              </span>
-            ) : null}
-            <span className="font-mono text-xs tracking-wider text-accent">
-              {t.projects.status[project.status]}
-            </span>
+    <Reveal as="article" className="border-t border-border">
+      <details className="group/project">
+        <summary className="group/summary cursor-pointer list-none py-6 outline-none marker:content-none [&::-webkit-details-marker]:hidden focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-bg md:py-7">
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="font-mono text-xs tracking-wider text-muted">
+                  {number}
+                </span>
+                {project.year ? (
+                  <span className="font-mono text-xs tracking-wider text-muted">
+                    {project.year}
+                  </span>
+                ) : null}
+                <span className="font-mono text-xs tracking-wider text-accent">
+                  {t.projects.status[project.status]}
+                </span>
+              </div>
+
+              <h3 className="mt-2 text-xl font-medium tracking-tight text-text transition-colors duration-200 group-hover/summary:text-accent md:text-2xl">
+                {project.name}
+              </h3>
+
+              <p className="mt-2 max-w-2xl text-[0.98rem] leading-relaxed text-muted">
+                {copy.tagline}
+              </p>
+
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {project.stack.map((tech) => (
+                  <li
+                    key={tech}
+                    className="border border-border px-2.5 py-1 font-mono text-xs tracking-wide text-muted"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <ChevronDown
+              className="mt-1 size-5 shrink-0 text-muted transition-transform duration-200 group-open/project:rotate-180"
+              aria-hidden
+            />
           </div>
+        </summary>
 
-          <TypeLine
-            as="h3"
-            text={project.name}
-            charMs={17}
-            className="mt-3 text-2xl font-medium tracking-tight text-text transition-colors duration-200 group-hover:text-accent md:text-[1.75rem]"
-          />
-          <TypeLine
-            as="p"
-            text={copy.tagline}
-            byWord
-            charMs={13}
-            className="mt-3 text-[1.02rem] leading-relaxed text-muted"
-          />
-
-          <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
+        <div className="min-w-0 space-y-8 border-t border-border/70 pb-10 pt-8">
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
             {project.repoUrl ? (
               <ExternalLink href={project.repoUrl}>
                 {t.projects.repository}
@@ -67,18 +82,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               </ExternalLink>
             ) : null}
           </div>
-        </header>
 
-        <div className="min-w-0 space-y-8">
           <div>
             <h4 className="eyebrow mb-2">{t.projects.problem}</h4>
-            <TypeLine
-              as="p"
-              text={copy.problem}
-              byWord
-              charMs={12}
-              className="leading-relaxed text-text/90"
-            />
+            <p className="leading-relaxed text-text/90">{copy.problem}</p>
           </div>
 
           <div>
@@ -104,20 +111,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                   className="relative pl-4 leading-relaxed text-text/90 before:absolute before:left-0 before:top-[0.7em] before:size-1 before:rounded-full before:bg-border"
                 >
                   {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="eyebrow mb-3">{t.projects.stack}</h4>
-            <ul className="flex flex-wrap gap-2">
-              {project.stack.map((tech) => (
-                <li
-                  key={tech}
-                  className="border border-border px-2.5 py-1 font-mono text-xs tracking-wide text-muted"
-                >
-                  {tech}
                 </li>
               ))}
             </ul>
@@ -205,7 +198,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </p>
           ) : null}
         </div>
-      </div>
+      </details>
     </Reveal>
   );
 }
