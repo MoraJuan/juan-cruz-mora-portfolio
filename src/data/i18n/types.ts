@@ -14,6 +14,7 @@ export type Dictionary = {
   skipToContent: string;
   nav: {
     home: string;
+    ask: string;
     about: string;
     projects: string;
     experience: string;
@@ -51,6 +52,31 @@ export type Dictionary = {
     viewProjects: string;
     downloadCv: string;
     photoCaption: string;
+  };
+  askAi: {
+    title: string;
+    chatTitle: string;
+    thinkingLabel: string;
+    doneLabel: string;
+    prompt: string;
+    greeting: string;
+    youLabel: string;
+    assistantLabel: string;
+    composerHint: string;
+    viewPortfolio: string;
+    openChat: string;
+    openChatAria: string;
+    fabTeaser: string;
+    askAnother: string;
+    clearChat: string;
+    questions: Record<
+      "who" | "projects" | "ai-work" | "stack" | "safeshot" | "available",
+      {
+        label: string;
+        steps: string[];
+        answer: string;
+      }
+    >;
   };
   about: {
     title: string;

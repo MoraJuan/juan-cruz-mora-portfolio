@@ -9,6 +9,8 @@ type SectionFrameProps = {
   children: ReactNode;
   /** Vertically center short content; use false for tall sections. */
   center?: boolean;
+  /** Skip full-viewport min-height — for short last sections. */
+  compact?: boolean;
   nextHref?: string;
   nextLabel?: string;
   nextDirection?: "down" | "up";
@@ -20,6 +22,7 @@ export function SectionFrame({
   "aria-labelledby": labelledBy,
   children,
   center = true,
+  compact = false,
   nextHref,
   nextLabel,
   nextDirection = "down",
@@ -32,6 +35,7 @@ export function SectionFrame({
       className={[
         "section-screen",
         center ? "section-screen--center" : "section-screen--start",
+        compact ? "section-screen--compact" : "",
         className,
       ]
         .filter(Boolean)

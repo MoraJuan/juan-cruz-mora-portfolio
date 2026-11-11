@@ -1,6 +1,8 @@
 .stroke-text {
   display: block;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   line-height: 0;
 }
 
@@ -10,10 +12,11 @@
 
 .stroke-text__svg {
   display: block;
-  width: 100%;
-  max-width: var(--stroke-text-width, 600px);
+  width: var(--stroke-text-width, 100%);
+  max-width: 100%;
   height: auto;
-  margin: 0 auto;
+  margin: 0;
+  margin-inline: 0;
   overflow: visible;
 }
 

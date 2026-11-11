@@ -4,6 +4,7 @@ export const es: Dictionary = {
   skipToContent: "Saltar al contenido",
   nav: {
     home: "Inicio",
+    ask: "Preguntar",
     about: "Sobre mí",
     projects: "Proyectos",
     experience: "Experiencia",
@@ -42,6 +43,86 @@ export const es: Dictionary = {
     viewProjects: "Ver proyectos",
     downloadCv: "Descargar CV",
     photoCaption: "San Juan, AR",
+  },
+  askAi: {
+    title: "MorAI",
+    chatTitle: "Chat con MorAI",
+    thinkingLabel: "Pensando…",
+    doneLabel: "Pensé durante",
+    prompt: "Sugerencias",
+    greeting:
+      "Hola. Preguntame por mi perfil, proyectos, stack o disponibilidad. Elegí una sugerencia para empezar.",
+    youLabel: "Vos",
+    assistantLabel: "Asistente",
+    composerHint: "Elegí una sugerencia para enviar…",
+    viewPortfolio: "Ver portfolio",
+    openChat: "Abrir chat",
+    openChatAria: "Abrir chat del perfil",
+    fabTeaser: "Habla con MorAI para conocerme mejor y más rápido",
+    askAnother: "Otra pregunta",
+    clearChat: "Limpiar chat",
+    questions: {
+      who: {
+        label: "¿Quién sos y cuál es tu enfoque?",
+        steps: [
+          "Leyendo la pregunta",
+          "Revisando formación y ubicación",
+          "Resumiendo el enfoque profesional",
+        ],
+        answer:
+          "Soy Juan Cruz Mora, Full-Stack AI Engineer en San Juan, Argentina. Cursando la etapa avanzada de la Licenciatura en Sistemas de Información (UNSJ). Construyo productos de punta a punta: APIs, datos, interfaces y automatizaciones. El foco es que el sistema funcione en producción, y orquestar agentes cuando aceleran el diseño y la entrega sin perder control del dominio.",
+      },
+      projects: {
+        label: "¿Qué productos construiste y qué problema resolvía cada uno?",
+        steps: [
+          "Leyendo la pregunta",
+          "Recorriendo los casos del portfolio",
+          "Armando un resumen por producto",
+        ],
+        answer:
+          "Chimento: e-commerce infantil (FastAPI + Next.js + PostgreSQL) con catálogo, variantes, stock y checkout. App Resto: plataforma gastronómica (Go + React) para comercios, sucursales, mesas, pedidos, cocina y caja. SafeShot: pipeline OCR/LLM sobre ShareX para censurar datos sensibles antes de compartir capturas. Studio Manager: panel de estudio (FastAPI + React) con bot de WhatsApp para reservas y consultas. En el portfolio podés abrir cada caso completo.",
+      },
+      "ai-work": {
+        label: "¿Cómo usás agentes de IA en el día a día?",
+        steps: [
+          "Leyendo la pregunta",
+          "Mapeando el flujo con agentes",
+          "Conectando tools con entregables reales",
+        ],
+        answer:
+          "Trabajo orquestando agentes (Cursor, Claude, Codex): investigar, proponer diseño, implementar, revisar y documentar. No dejo que el modelo “decida solo”: defino contratos, reviso diffs y valido en entorno real. También aplico IA en producto — por ejemplo OCR + reglas + LLM opcional en SafeShot, o bots de atención sincronizados con un panel. La meta es velocidad con criterio de ingeniería.",
+      },
+      stack: {
+        label: "¿Con qué stack te movés hoy?",
+        steps: [
+          "Leyendo la pregunta",
+          "Agrupando backend, frontend e infra",
+          "Priorizando lo que más uso",
+        ],
+        answer:
+          "Backend: Python/FastAPI, Go, TypeScript/Node y APIs REST. Frontend: React, Next.js y Tailwind. Datos: PostgreSQL, SQLAlchemy/Prisma/Alembic y Redis cuando hace falta. Infra: Docker, Linux, GitHub, Railway, Vercel y AWS. En el lado AI: orquestación de agentes y pipelines OCR/LLM. Elijo herramientas según el problema, no por moda.",
+      },
+      safeshot: {
+        label: "Contame más de SafeShot y el ángulo de IA",
+        steps: [
+          "Leyendo la pregunta",
+          "Repasando el pipeline OCR/LLM",
+          "Explicando decisiones de privacidad",
+        ],
+        answer:
+          "SafeShot se engancha al pipeline de ShareX después de capturar. Un servicio local en FastAPI corre OCR (Tesseract) y reglas determinísticas (emails, tarjetas, tokens, DNI, etc.). El LLM es opcional y pide consentimiento por captura; si el servicio falla, se conserva el original y se corta la subida automática. Es un ejemplo de IA aplicada con modo local-first y fallback seguro.",
+      },
+      available: {
+        label: "¿Estás disponible y cómo te contacto?",
+        steps: [
+          "Leyendo la pregunta",
+          "Revisando disponibilidad",
+          "Dejando canales de contacto",
+        ],
+        answer:
+          "Sí, estoy abierto a roles, proyectos freelance y conversaciones técnicas. Escribime a juancruzmora26@gmail.com o por LinkedIn (linkedin.com/in/juan-cruz-mora). También está el CV para descargar desde el portfolio. Contame el problema o el rol y vemos encaje.",
+      },
+    },
   },
   about: {
     title: "Sobre mí",

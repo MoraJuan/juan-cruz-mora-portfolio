@@ -29,7 +29,7 @@ export function Hero() {
     >
       <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-14">
         <div className="min-w-0">
-          <div className="font-display w-full max-w-xl text-text [&_.stroke-text__svg]:ml-0 [&_.stroke-text__svg]:mr-auto">
+          <div className="font-display w-full min-w-0 max-w-full text-text">
             <StrokeText
               text={site.name}
               strokeColor="var(--text)"
@@ -81,24 +81,18 @@ export function Hero() {
         </div>
 
         <aside className="min-w-0">
-          <figure className="ml-0 w-[min(100%,280px)] sm:w-[min(100%,310px)] lg:ml-auto lg:w-[min(100%,360px)]">
-            <div className="relative pb-2.5 pr-2.5">
-              <div
-                className="pointer-events-none absolute bottom-0 right-0 top-2.5 left-2.5 border border-accent/35"
-                aria-hidden
+          <figure className="ml-0 w-[min(100%,240px)] sm:w-[min(100%,280px)] lg:ml-auto lg:w-[min(100%,320px)]">
+            <div className="relative aspect-square w-full overflow-hidden rounded-full border border-border bg-bg-elevated">
+              <Image
+                src="/profile.jpg"
+                alt="Juan Cruz Mora, software developer based in San Juan, Argentina"
+                fill
+                priority
+                sizes="(min-width: 1024px) 320px, (min-width: 640px) 280px, 240px"
+                className="object-cover object-[center_18%]"
               />
-              <div className="relative aspect-[4/5] w-full overflow-hidden border border-border bg-bg-elevated">
-                <Image
-                  src="/profile.jpg"
-                  alt="Juan Cruz Mora, software developer based in San Juan, Argentina"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 360px, (min-width: 640px) 310px, 280px"
-                  className="object-cover object-[center_18%]"
-                />
-              </div>
             </div>
-            <figcaption className="mt-3 font-mono text-xs tracking-wide text-muted">
+            <figcaption className="mt-3 text-center font-mono text-xs tracking-wide text-muted lg:text-right">
               {t.hero.photoCaption}
             </figcaption>
           </figure>

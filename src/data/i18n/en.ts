@@ -4,6 +4,7 @@ export const en: Dictionary = {
   skipToContent: "Skip to content",
   nav: {
     home: "Home",
+    ask: "Ask",
     about: "About",
     projects: "Projects",
     experience: "Experience",
@@ -42,6 +43,86 @@ export const en: Dictionary = {
     viewProjects: "View projects",
     downloadCv: "Download CV",
     photoCaption: "San Juan, AR",
+  },
+  askAi: {
+    title: "MorAI",
+    chatTitle: "Chat with MorAI",
+    thinkingLabel: "Thinking…",
+    doneLabel: "Thought for",
+    prompt: "Suggestions",
+    greeting:
+      "Hi. Ask about my profile, projects, stack, or availability. Pick a suggestion to start.",
+    youLabel: "You",
+    assistantLabel: "Assistant",
+    composerHint: "Pick a suggestion to send…",
+    viewPortfolio: "View portfolio",
+    openChat: "Open chat",
+    openChatAria: "Open profile chat",
+    fabTeaser: "Chat with MorAI to get to know me better, faster",
+    askAnother: "Ask another",
+    clearChat: "Clear chat",
+    questions: {
+      who: {
+        label: "Who are you and what’s your focus?",
+        steps: [
+          "Reading the question",
+          "Checking background and location",
+          "Summarizing the professional focus",
+        ],
+        answer:
+          "I’m Juan Cruz Mora, a Full-Stack AI Engineer based in San Juan, Argentina. I’m in the advanced stage of a B.S. in Information Systems (UNSJ). I build end-to-end products: APIs, data, interfaces, and automation. The focus is production-ready systems, and orchestrating agents when they speed up design and delivery without losing domain control.",
+      },
+      projects: {
+        label: "What products have you built, and what problem did each solve?",
+        steps: [
+          "Reading the question",
+          "Scanning portfolio cases",
+          "Summarizing each product",
+        ],
+        answer:
+          "Chimento: children’s retail e-commerce (FastAPI + Next.js + PostgreSQL) with catalog, variants, stock, and checkout. App Resto: restaurant platform (Go + React) for businesses, branches, tables, orders, kitchen, and cashier. SafeShot: OCR/LLM pipeline on ShareX to redact sensitive data before sharing screenshots. Studio Manager: studio panel (FastAPI + React) with a WhatsApp bot for bookings and inquiries. Open each full case in the portfolio.",
+      },
+      "ai-work": {
+        label: "How do you use AI agents day to day?",
+        steps: [
+          "Reading the question",
+          "Mapping the agent workflow",
+          "Connecting tools to real deliverables",
+        ],
+        answer:
+          "I orchestrate agents (Cursor, Claude, Codex) to research, propose design, implement, review, and document. Models don’t decide alone: I define contracts, review diffs, and validate in a real environment. I also ship AI in product — OCR + rules + optional LLM in SafeShot, or attention bots synced with an admin panel. The goal is speed with engineering judgment.",
+      },
+      stack: {
+        label: "What stack do you work with today?",
+        steps: [
+          "Reading the question",
+          "Grouping backend, frontend, and infra",
+          "Prioritizing what I use most",
+        ],
+        answer:
+          "Backend: Python/FastAPI, Go, TypeScript/Node, and REST APIs. Frontend: React, Next.js, and Tailwind. Data: PostgreSQL, SQLAlchemy/Prisma/Alembic, and Redis when needed. Infra: Docker, Linux, GitHub, Railway, Vercel, and AWS. On the AI side: agent orchestration and OCR/LLM pipelines. I pick tools for the problem, not for fashion.",
+      },
+      safeshot: {
+        label: "Tell me more about SafeShot and the AI angle",
+        steps: [
+          "Reading the question",
+          "Reviewing the OCR/LLM pipeline",
+          "Explaining privacy decisions",
+        ],
+        answer:
+          "SafeShot hooks into ShareX after capture. A local FastAPI service runs OCR (Tesseract) and deterministic rules (emails, cards, tokens, IDs, etc.). The LLM is optional and requires consent per capture; if the service fails, the original is kept and automatic upload is disabled. It’s applied AI with a local-first mode and a safe fallback.",
+      },
+      available: {
+        label: "Are you available, and how can I reach you?",
+        steps: [
+          "Reading the question",
+          "Checking availability",
+          "Sharing contact channels",
+        ],
+        answer:
+          "Yes — open to roles, freelance projects, and technical conversations. Email juancruzmora26@gmail.com or reach me on LinkedIn (linkedin.com/in/juan-cruz-mora). You can also download the CV from the portfolio. Tell me the problem or the role and we can see if it’s a fit.",
+      },
+    },
   },
   about: {
     title: "About",

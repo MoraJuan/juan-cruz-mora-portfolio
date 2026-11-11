@@ -15,6 +15,8 @@ export function Contact() {
     <SectionFrame
       id="contacto"
       aria-labelledby="contact-title"
+      center={false}
+      compact
       nextHref="#inicio"
       nextLabel={t.scroll.toTop}
       nextDirection="up"
@@ -28,7 +30,7 @@ export function Contact() {
         />
       </Reveal>
 
-      <Reveal className="mt-10 grid gap-8 border-t border-border pt-8 sm:grid-cols-2 lg:grid-cols-4">
+      <Reveal className="mt-8 grid gap-6 border-t border-border pt-6 sm:grid-cols-2 lg:grid-cols-4">
         {hasEmail ? (
           <div>
             <p className="eyebrow mb-2">{t.contact.email}</p>

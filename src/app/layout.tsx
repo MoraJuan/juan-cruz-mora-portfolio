@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Source_Sans_3, Source_Serif_4 } from "next/font/google";
-import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { LocaleProvider } from "@/components/LocaleProvider";
-import { Navbar } from "@/components/Navbar";
 import { SiteBackground } from "@/components/SiteBackground";
 import { SkipLink } from "@/components/SkipLink";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -130,13 +128,7 @@ export default function RootLayout({
           <LocaleProvider>
             <SiteBackground />
             <SkipLink />
-            <Navbar />
-            <main id="contenido" className="relative z-10 flex-1 pt-20 md:pt-24">
-              {children}
-            </main>
-            <div className="relative z-10">
-              <Footer />
-            </div>
+            {children}
           </LocaleProvider>
         </ThemeProvider>
       </body>

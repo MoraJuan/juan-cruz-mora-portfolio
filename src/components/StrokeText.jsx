@@ -136,9 +136,16 @@ const StrokeText = ({
     const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
     observer?.observe(root);
 
+    // Browser zoom often skips ResizeObserver — remeasure so the name stays visible.
+    const onViewport = () => measure();
+    window.addEventListener('resize', onViewport);
+    window.visualViewport?.addEventListener('resize', onViewport);
+
     return () => {
       cancelled = true;
       observer?.disconnect();
+      window.removeEventListener('resize', onViewport);
+      window.visualViewport?.removeEventListener('resize', onViewport);
     };
   }, [characters, fontFamily, fontSize, fontWeight, letterSpacing, strokeWidth]);
 
@@ -332,16 +339,23 @@ const StrokeText = ({
     <span
       ref={rootRef}
       className={`stroke-text ${trigger === 'hover' ? 'stroke-text--hover' : ''} ${className}`.trim()}
-      style={{ ...style, '--stroke-text-width': `${box ? box.width : 600}px` }}
+      style={{
+        ...style,
+        '--stroke-text-width': box ? `${box.width}px` : '100%',
+      }}
       role="img"
       aria-label={String(text ?? '')}
     >
       <svg
         className="stroke-text__svg"
         viewBox={viewBox}
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMinYMid meet"
         aria-hidden="true"
-        style={box ? undefined : { visibility: 'hidden' }}
+        style={
+          box
+            ? { aspectRatio: `${box.width} / ${box.height}` }
+            : { visibility: 'hidden', minHeight: `${fontSize * 0.9}px` }
+        }
       >
         <defs>
           {fillMode === 'wipe' && wipeStart && (
