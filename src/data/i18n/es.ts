@@ -159,6 +159,7 @@ export const es: Dictionary = {
     demo: "Demo",
     walkthrough: "Ver recorrido",
     walkthroughCaption: "Recorrido del panel y del bot (demo anónima)",
+    moreOnGithub: "Ver más proyectos en GitHub",
     status: {
       shipped: "Disponible",
       "in-progress": "En desarrollo",

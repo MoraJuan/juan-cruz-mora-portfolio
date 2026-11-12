@@ -3,7 +3,6 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { CvDownload } from "@/components/CvDownload";
-import { ExternalLink } from "@/components/ExternalLink";
 import { useLocale } from "@/components/LocaleProvider";
 import SpecularButton from "@/components/SpecularButton";
 import { getSpecularThemeProps } from "@/components/specularTheme";
@@ -14,6 +13,32 @@ import { useTheme } from "@/components/ThemeProvider";
 import { TypeLine } from "@/components/TypeLine";
 import { site } from "@/data/site";
 import { scrollToHash } from "@/lib/scroll-to-hash";
+
+function GitHubLogo({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={className}
+      fill="currentColor"
+    >
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12Z" />
+    </svg>
+  );
+}
+
+function LinkedInLogo({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={className}
+      fill="currentColor"
+    >
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z" />
+    </svg>
+  );
+}
 
 export function Hero() {
   const { t } = useLocale();
@@ -80,9 +105,29 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={340}>
-            <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
-              <ExternalLink href={site.links.github}>GitHub</ExternalLink>
-              <ExternalLink href={site.links.linkedin}>LinkedIn</ExternalLink>
+            <p className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-text">
+              <a
+                href={site.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors duration-200 hover:text-accent"
+              >
+                <GitHubLogo className="size-4 shrink-0" />
+                <span className="underline decoration-border underline-offset-4 hover:decoration-accent/50">
+                  GitHub
+                </span>
+              </a>
+              <a
+                href={site.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors duration-200 hover:text-accent"
+              >
+                <LinkedInLogo className="size-4 shrink-0" />
+                <span className="underline decoration-border underline-offset-4 hover:decoration-accent/50">
+                  LinkedIn
+                </span>
+              </a>
             </p>
           </Reveal>
         </div>

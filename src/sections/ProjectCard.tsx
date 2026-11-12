@@ -2,11 +2,14 @@
 
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/components/LocaleProvider";
 import { Reveal } from "@/components/Reveal";
 import SpotlightCard from "@/components/SpotlightCard";
 import { useTheme } from "@/components/ThemeProvider";
 import type { Project } from "@/lib/types";
+
+const CAROUSEL_MS = 2270;
 
 type ProjectCardProps = {
   project: Project;
@@ -19,7 +22,82 @@ export function ProjectCard({ project, index, onOpen }: ProjectCardProps) {
   const { theme } = useTheme();
   const copy = t.projects.items[project.id];
   const number = String(index + 1).padStart(2, "0");
-  const cover = project.images[0];
+  const images = project.images;
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const mediaRef = useRef<HTMLDivElement | null>(null);
+  const hasVideoCover = Boolean(project.videoSrc);
+  const canCarousel = !hasVideoCover && images.length > 1;
+  const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    setSlide(0);
+  }, [project.id]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !project.videoSrc) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      video.pause();
+      return;
+    }
+
+    const play = () => {
+      void video.play().catch(() => {
+        /* Autoplay can be blocked until the tab is visible. */
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) play();
+        else video.pause();
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [project.videoSrc]);
+
+  useEffect(() => {
+    if (!canCarousel) return;
+
+    const root = mediaRef.current;
+    if (!root) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
+    let timer = 0;
+
+    const stop = () => {
+      window.clearInterval(timer);
+      timer = 0;
+    };
+
+    const start = () => {
+      if (timer) return;
+      timer = window.setInterval(() => {
+        setSlide((current) => (current + 1) % images.length);
+      }, CAROUSEL_MS);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) start();
+        else stop();
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(root);
+    return () => {
+      stop();
+      observer.disconnect();
+    };
+  }, [canCarousel, images.length]);
 
   if (!copy) return null;
 
@@ -39,16 +117,63 @@ export function ProjectCard({ project, index, onOpen }: ProjectCardProps) {
           onClick={() => onOpen(project)}
           className="group/card relative z-[2] flex h-full w-full flex-col text-left outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
-          {cover ? (
+          {hasVideoCover ? (
             <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-bg">
-              <Image
-                src={cover.src}
-                alt={copy.imageAlts?.[cover.key] ?? project.name}
-                fill
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover object-top transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
-                loading={index < 2 ? "eager" : "lazy"}
-              />
+              <video
+                ref={videoRef}
+                className="pointer-events-none absolute inset-0 size-full object-cover object-top transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={project.walkthrough?.poster}
+                aria-hidden
+              >
+                <source src={project.videoSrc} type="video/mp4" />
+              </video>
+            </div>
+          ) : images.length > 0 ? (
+            <div
+              ref={mediaRef}
+              className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-bg"
+            >
+              {images.map((image, imageIndex) => {
+                const active = imageIndex === slide;
+                return (
+                  <Image
+                    key={image.key}
+                    src={image.src}
+                    alt={copy.imageAlts?.[image.key] ?? project.name}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className={[
+                      "object-cover object-top transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:scale-[1.03]",
+                      active ? "opacity-100" : "opacity-0",
+                    ].join(" ")}
+                    loading={index < 2 && imageIndex === 0 ? "eager" : "lazy"}
+                    aria-hidden={!active}
+                  />
+                );
+              })}
+
+              {canCarousel ? (
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-2.5 flex justify-center gap-1.5"
+                  aria-hidden
+                >
+                  {images.map((image, imageIndex) => (
+                    <span
+                      key={image.key}
+                      className={[
+                        "h-1 w-1 rounded-full transition-colors duration-300",
+                        imageIndex === slide
+                          ? "bg-accent"
+                          : "bg-text/35",
+                      ].join(" ")}
+                    />
+                  ))}
+                </div>
+              ) : null}
             </div>
           ) : null}
 

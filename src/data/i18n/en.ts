@@ -159,6 +159,7 @@ export const en: Dictionary = {
     demo: "Demo",
     walkthrough: "Watch walkthrough",
     walkthroughCaption: "Panel and bot walkthrough (anonymous demo)",
+    moreOnGithub: "See more projects on GitHub",
     status: {
       shipped: "Available",
       "in-progress": "In progress",

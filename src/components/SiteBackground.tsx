@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "@/components/ThemeProvider";
 
 const ColorBends = dynamic(() => import("@/components/ColorBends"), {
@@ -14,6 +14,11 @@ const DARK_COLORS = ["#1f4f61", "#3d7a8f", "#6a9fb0"];
 const DARK_COLORS_MOBILE = ["#3d8fa3", "#6ab8c8", "#b5e3ec"];
 /** Light: deeper teals so they read on cream instead of washing out. */
 const LIGHT_COLORS = ["#082028", "#123846", "#255468"];
+
+/** Peak blur as the page is scrolled (px). ~20% stronger settle for readability. */
+const SCROLL_BLUR_MAX_PX = 7.2;
+/** Extra veil opacity added at full scroll (~20% more soft cover). */
+const SCROLL_VEIL_EXTRA = 0.2;
 
 function useIsMobileBg() {
   // Always start false to match SSR — flip after mount to avoid hydration mismatch.
@@ -30,13 +35,67 @@ function useIsMobileBg() {
   return mobile;
 }
 
+function smoothstep(t: number) {
+  const x = Math.min(1, Math.max(0, t));
+  return x * x * (3 - 2 * x);
+}
+
 export function SiteBackground() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const isMobile = useIsMobileBg();
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const bendsRef = useRef<HTMLDivElement | null>(null);
+  const softVeilRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    const bends = bendsRef.current;
+    const softVeil = softVeilRef.current;
+    if (!root || !bends || !softVeil) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      bends.style.filter = "none";
+      bends.style.transform = "none";
+      softVeil.style.opacity = "0";
+      return;
+    }
+
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      // Reach most of the blur within ~1.35 viewports so mid-page text already settles.
+      const progress = smoothstep(window.scrollY / (window.innerHeight * 1.35));
+      const blur = progress * SCROLL_BLUR_MAX_PX;
+
+      bends.style.filter = blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : "none";
+      // Scale slightly so blurred edges don't show hard empty bands.
+      bends.style.transform =
+        blur > 0.05 ? `scale(${(1 + progress * 0.06).toFixed(4)})` : "none";
+      softVeil.style.opacity = (progress * SCROLL_VEIL_EXTRA).toFixed(3);
+      root.style.setProperty("--bg-scroll", progress.toFixed(4));
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [theme, isMobile]);
 
   return (
     <div
+      ref={rootRef}
       aria-hidden
       className="pointer-events-none fixed inset-0 z-[1] h-[100dvh] w-screen max-w-none overflow-hidden"
     >
@@ -54,9 +113,11 @@ export function SiteBackground() {
         Keep transparent so dark pattern regions don't paint opaque near-black
         over the CSS tint. Mobile uses brighter bands + higher opacity.
         Light mode stays softer so black type remains readable.
+        Scroll softens this layer (blur + scale) so bands don't fight body text.
       */}
       <div
-        className={`absolute inset-0 ${
+        ref={bendsRef}
+        className={`absolute inset-0 origin-center will-change-[filter,transform] ${
           isDark
             ? "opacity-70 max-md:opacity-90"
             : "opacity-40 max-md:opacity-50"
@@ -95,6 +156,11 @@ export function SiteBackground() {
             ? "linear-gradient(180deg, rgba(18,19,20,0.1) 0%, rgba(18,19,20,0.28) 55%, rgba(18,19,20,0.52) 100%)"
             : "linear-gradient(180deg, rgba(244,244,241,0.55) 0%, rgba(244,244,241,0.72) 45%, rgba(244,244,241,0.88) 100%)",
         }}
+      />
+      {/* Extra soft cover on scroll — keeps type readable without touching text layers. */}
+      <div
+        ref={softVeilRef}
+        className="absolute inset-0 bg-bg opacity-0"
       />
     </div>
   );

@@ -98,6 +98,7 @@ export type Dictionary = {
     demo: string;
     walkthrough: string;
     walkthroughCaption: string;
+    moreOnGithub: string;
     status: {
       shipped: string;
       "in-progress": string;
