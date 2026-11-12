@@ -47,7 +47,7 @@ Sin secrets obligatorios: el sitio es estático/SSR de presentación. Si no defi
 | `src/data/i18n/` | Copy ES / EN |
 | `public/projects/` | Capturas y video de demo |
 | `public/cv-es.pdf` / `public/cv-en.pdf` | CVs descargables |
-| `public/profile.jpg` | Foto de perfil |
+| `public/profile.png` | Foto de perfil |
 | `src/app/icon.svg` | Favicon (letra J) |
 
 ## Stack

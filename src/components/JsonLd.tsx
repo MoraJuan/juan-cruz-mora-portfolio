@@ -12,7 +12,7 @@ export function JsonLd() {
     jobTitle: site.role,
     url: siteUrl,
     email,
-    image: `${siteUrl}/profile.jpg`,
+    image: `${siteUrl}/profile.png`,
     address: {
       "@type": "PostalAddress",
       addressLocality: "San Juan",

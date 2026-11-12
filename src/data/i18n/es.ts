@@ -130,7 +130,7 @@ export const es: Dictionary = {
       "Estudio sistemas, construyo productos y orquesto agentes cerca del problema real.",
     paragraphs: [
       "Cursando la etapa avanzada de la Licenciatura en Sistemas de Información en la Universidad Nacional de San Juan. Trabajo sobre casos concretos: APIs, datos, paneles, automatizaciones y pipelines con OCR/LLM cuando aportan.",
-      "Me muevo en full stack y en orquestación de agentes según lo que pida el problema. El foco es que el sistema funcione bien en producción, no en casarme con una herramienta.",
+      "Me muevo en full stack y en orquestación de agentes según lo que pida el problema. El foco es que el sistema funcione bien en producción.",
     ],
     facts: [
       { label: "Ubicación", value: "San Juan, Argentina" },

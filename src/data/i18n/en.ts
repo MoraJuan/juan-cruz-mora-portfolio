@@ -130,7 +130,7 @@ export const en: Dictionary = {
       "Studying systems, shipping products, and orchestrating agents close to the real problem.",
     paragraphs: [
       "I'm in the advanced stage of a Bachelor's in Information Systems at Universidad Nacional de San Juan. I work on concrete cases: APIs, data, admin panels, automation, and OCR/LLM pipelines when they add leverage.",
-      "I move across full stack and agent orchestration depending on what the problem needs. The focus is on systems that work well in production, not on locking into one tool.",
+      "I move across full stack and agent orchestration depending on what the problem needs. The focus is on systems that work well in production.",
     ],
     facts: [
       { label: "Location", value: "San Juan, Argentina" },

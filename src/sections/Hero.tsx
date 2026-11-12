@@ -134,14 +134,14 @@ export function Hero() {
 
         <Reveal as="aside" className="min-w-0" delay={220}>
           <figure className="ml-0 w-[min(100%,240px)] sm:w-[min(100%,280px)] lg:ml-auto lg:w-[min(100%,320px)]">
-            <div className="relative aspect-square w-full overflow-hidden rounded-full border border-border bg-bg-elevated">
+            <div className="relative aspect-square w-full overflow-hidden rounded-full">
               <Image
-                src="/profile.jpg"
+                src="/profile.png"
                 alt="Juan Cruz Mora, software developer based in San Juan, Argentina"
                 fill
                 priority
                 sizes="(min-width: 1024px) 320px, (min-width: 640px) 280px, 240px"
-                className="object-cover object-[center_18%]"
+                className="object-cover object-[center_22%]"
               />
             </div>
             <figcaption className="mt-3 text-center font-mono text-xs tracking-wide text-muted lg:text-right">
