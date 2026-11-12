@@ -7,6 +7,7 @@ import { ExternalLink } from "@/components/ExternalLink";
 import { useLocale } from "@/components/LocaleProvider";
 import SpecularButton from "@/components/SpecularButton";
 import { getSpecularThemeProps } from "@/components/specularTheme";
+import { Reveal } from "@/components/Reveal";
 import { SectionFrame } from "@/components/SectionFrame";
 import StrokeText from "@/components/StrokeText";
 import { useTheme } from "@/components/ThemeProvider";
@@ -59,28 +60,34 @@ export function Hero() {
             className="mt-2 max-w-xl text-[clamp(1.15rem,2.4vw,1.45rem)] font-medium leading-snug tracking-tight text-text"
           />
 
-          <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
-            {t.hero.description}
-          </p>
+          <Reveal delay={180}>
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
+              {t.hero.description}
+            </p>
+          </Reveal>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <SpecularButton
-              {...specularProps}
-              onClick={() => scrollToHash("#proyectos")}
-            >
-              {t.hero.viewProjects}
-              <ArrowRight className="size-4" aria-hidden />
-            </SpecularButton>
-            <CvDownload specular />
-          </div>
+          <Reveal delay={260}>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <SpecularButton
+                {...specularProps}
+                onClick={() => scrollToHash("#proyectos")}
+              >
+                {t.hero.viewProjects}
+                <ArrowRight className="size-4" aria-hidden />
+              </SpecularButton>
+              <CvDownload specular />
+            </div>
+          </Reveal>
 
-          <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
-            <ExternalLink href={site.links.github}>GitHub</ExternalLink>
-            <ExternalLink href={site.links.linkedin}>LinkedIn</ExternalLink>
-          </p>
+          <Reveal delay={340}>
+            <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
+              <ExternalLink href={site.links.github}>GitHub</ExternalLink>
+              <ExternalLink href={site.links.linkedin}>LinkedIn</ExternalLink>
+            </p>
+          </Reveal>
         </div>
 
-        <aside className="min-w-0">
+        <Reveal as="aside" className="min-w-0" delay={220}>
           <figure className="ml-0 w-[min(100%,240px)] sm:w-[min(100%,280px)] lg:ml-auto lg:w-[min(100%,320px)]">
             <div className="relative aspect-square w-full overflow-hidden rounded-full border border-border bg-bg-elevated">
               <Image
@@ -96,7 +103,7 @@ export function Hero() {
               {t.hero.photoCaption}
             </figcaption>
           </figure>
-        </aside>
+        </Reveal>
       </div>
     </SectionFrame>
   );

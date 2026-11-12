@@ -39,13 +39,17 @@ export function Experience() {
         />
       </Reveal>
 
-      <Reveal className="mb-6">
+      <Reveal className="mb-6" delay={70}>
         <h3 className="eyebrow">{t.experience.skills}</h3>
       </Reveal>
 
       <div className="mb-14 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-        {skillGroups.map((group) => (
-          <Reveal key={group.id} className="border-t border-border pt-5">
+        {skillGroups.map((group, index) => (
+          <Reveal
+            key={group.id}
+            className="border-t border-border pt-5"
+            delay={90 + Math.min(index, 5) * 70}
+          >
             <h4 className="text-sm font-medium tracking-tight text-text">
               {t.experience.skillGroups[
                 group.id as keyof typeof t.experience.skillGroups
@@ -65,34 +69,37 @@ export function Experience() {
         ))}
       </div>
 
-      <Reveal className="mb-14">
-        <h3 className="eyebrow mb-6">{t.experience.trajectory}</h3>
-        <ol className="space-y-0 border-t border-border">
-          {roles.map((item) => (
-            <li
-              key={item.key}
-              className="grid gap-2 border-b border-border py-6 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-10"
-            >
-              <p className="font-mono text-xs tracking-wide text-muted md:pt-1">
-                {item.key === "freelance"
-                  ? item.period.split(" / ")[0]
-                  : item.period}
-              </p>
-              <div>
-                <p className="font-medium text-text">
-                  {item.role}
-                  <span className="text-muted"> · {item.org}</span>
-                </p>
-                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-                  {item.summary}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
+      <Reveal className="mb-6" delay={80}>
+        <h3 className="eyebrow">{t.experience.trajectory}</h3>
       </Reveal>
 
-      <Reveal className="border-t border-border pt-6">
+      <ol className="mb-14 space-y-0 border-t border-border">
+        {roles.map((item, index) => (
+          <Reveal
+            key={item.key}
+            as="li"
+            delay={index * 90}
+            className="grid gap-2 border-b border-border py-6 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-10"
+          >
+            <p className="font-mono text-xs tracking-wide text-muted md:pt-1">
+              {item.key === "freelance"
+                ? item.period.split(" / ")[0]
+                : item.period}
+            </p>
+            <div>
+              <p className="font-medium text-text">
+                {item.role}
+                <span className="text-muted"> · {item.org}</span>
+              </p>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+                {item.summary}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </ol>
+
+      <Reveal className="border-t border-border pt-6" delay={100}>
         <h3 className="eyebrow mb-4">{t.experience.educationTitle}</h3>
         <p className="font-display text-lg font-medium tracking-tight text-text">
           {t.experience.education.degree}

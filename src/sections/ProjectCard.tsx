@@ -24,7 +24,7 @@ export function ProjectCard({ project, index, onOpen }: ProjectCardProps) {
   if (!copy) return null;
 
   return (
-    <Reveal as="article" className="h-full">
+    <Reveal as="article" className="h-full" delay={Math.min(index, 5) * 70}>
       <SpotlightCard
         theme={theme}
         spotlightColor={theme === "dark" ? "#6a9fb0" : "#143d4d"}

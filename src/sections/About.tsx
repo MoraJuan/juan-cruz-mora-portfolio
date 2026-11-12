@@ -27,7 +27,7 @@ export function About() {
       </Reveal>
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.85fr)]">
-        <Reveal className="space-y-4">
+        <Reveal className="space-y-4" delay={90}>
           {t.about.paragraphs.map((paragraph) => (
             <p
               key={paragraph}
@@ -38,7 +38,7 @@ export function About() {
           ))}
         </Reveal>
 
-        <Reveal>
+        <Reveal delay={160}>
           <dl className="space-y-0 border-t border-border">
             {t.about.facts.map((fact) => (
               <div

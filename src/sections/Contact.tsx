@@ -30,7 +30,10 @@ export function Contact() {
         />
       </Reveal>
 
-      <Reveal className="mt-8 grid gap-6 border-t border-border pt-6 sm:grid-cols-2 lg:grid-cols-4">
+      <Reveal
+        className="mt-8 grid gap-6 border-t border-border pt-6 sm:grid-cols-2 lg:grid-cols-4"
+        delay={110}
+      >
         {hasEmail ? (
           <div>
             <p className="eyebrow mb-2">{t.contact.email}</p>
